@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        android:id="@+id/container2"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false">
+
+
+
+    <ImageView
+            android:id="@+id/btnListaFav"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_favpressed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+    />
+
+    <TextView
+        android:id="@+id/lblNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Nome"
+        android:text="Nome"
+        android:textColor="#215E21"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nome2"
+        android:layout_marginTop="60dp"
+        android:shadowColor="#215E21"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.7"
+        />
+
+    <TextView
+        android:id="@+id/nome2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="item"
+        android:textSize="17sp"
+        android:textColor="#333333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblNome"
+        app:layout_constraintBottom_toTopOf="@id/lblTipo"
+        />
+
+    <TextView
+        android:id="@+id/lblTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        tools:text="Tipo"
+        android:textColor="#215E21"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nome2"
+        app:layout_constraintBottom_toTopOf="@id/tipo2"
+        android:shadowColor="#215E21"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.7"
+        />
+
+    <TextView
+        android:id="@+id/tipo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="teste"
+        android:textSize="17sp"
+        android:textColor="#333333"
+        tools:text="item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblTipo"
+        app:layout_constraintBottom_toTopOf="@id/lblRanking"
+        />
+
+    <TextView
+        android:id="@+id/lblRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ranking"
+        tools:text="Ranking"
+        android:textColor="#215E21"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tipo2"
+        app:layout_constraintBottom_toTopOf="@id/ranking2"
+        android:shadowColor="#215E21"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.7"
+        />
+
+    <TextView
+        android:id="@+id/ranking2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="teste"
+        android:textSize="17sp"
+        android:textColor="#333333"
+        tools:text="item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblRanking"
+        app:layout_constraintBottom_toTopOf="@id/lblElenco"
+        />
+
+    <TextView
+        android:id="@+id/lblElenco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Elenco"
+        tools:text="Elenco"
+        android:textColor="#215E21"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ranking2"
+        app:layout_constraintBottom_toTopOf="@id/elenco2"
+        android:shadowColor="#215E21"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.7"
+        />
+
+    <TextView
+        android:id="@+id/elenco2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="teste"
+        android:textColor="#333333"
+        tools:text="item"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblElenco"
+        app:layout_constraintBottom_toTopOf="@id/lblUrlToImage"
+    />
+
+    <TextView
+        android:id="@+id/lblUrlToImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="URLToImage"
+        tools:text="URLToImage"
+        android:textColor="#215E21"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/elenco2"
+        app:layout_constraintBottom_toTopOf="@id/urlToImage2"
+        android:shadowColor="#215E21"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.7"
+    />
+
+
+    <ImageView
+        android:id="@+id/urlToImage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblUrlToImage"
+        android:layout_marginTop="15dp"
+        android:adjustViewBounds="true"
+    />
+
+
+</android.support.constraint.ConstraintLayout>
