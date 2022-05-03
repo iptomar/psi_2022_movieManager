@@ -136,9 +136,15 @@ class MainActivity : AppCompatActivity() {
             rCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
+<<<<<<< HEAD
                         val lista = it.getParcelableExtra<Movie>("art")
                         mList.add(lista)
                         fList.add(lista)
+=======
+                        val lista = it.getParcelableExtra<Article>("art")
+                        mList.add(lista!!)
+                        fList.add(lista!!)
+>>>>>>> API
                         list.adapter?.notifyDataSetChanged()
                     }
                 }
