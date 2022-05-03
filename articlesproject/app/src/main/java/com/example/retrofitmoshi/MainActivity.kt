@@ -122,7 +122,6 @@ class MainActivity : AppCompatActivity() {
         }
         list.addItemDecoration(divider)
 
-
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
@@ -137,8 +136,8 @@ class MainActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
                         val lista = it.getParcelableExtra<Movie>("art")
-                        mList.add(lista)
-                        fList.add(lista)
+                        mList.add(lista!!)
+                        fList.add(lista!!)
                         list.adapter?.notifyDataSetChanged()
                     }
                 }

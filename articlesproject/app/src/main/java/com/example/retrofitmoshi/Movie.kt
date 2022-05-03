@@ -10,7 +10,7 @@ data class Movie(
     //filmes populares
     var adult: Boolean,
     var backdrop_path: String,
-    var genre_ids: @RawValue List<genre_ids>,
+    //var genre_ids: @RawValue List<genre_ids>,
     var id: String = "",
     var original_language: String?,
     var original_title: String,
