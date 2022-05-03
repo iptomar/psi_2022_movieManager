@@ -18,7 +18,7 @@ import android.content.Intent.getIntentOld
 import android.support.v4.content.ContextCompat.*
 
 
-class ListAdapterFavourites(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapterFavourites(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
         return ListAdapter.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_listafavs, parent, false))
@@ -34,10 +34,10 @@ class ListAdapterFavourites(private val itemsList: MutableList<Article>) : Recyc
         //val formatter = SimpleDateFormat(pattern, Locale.getDefault())
         //val formattedDate = formatter.format(DateTime.parse(article.publishedAt).toDate())
 
-        layout.nome2.text = article.title ?: "N/A"
-        layout.tipo2.text = article.release_date
-        layout.ranking2.text = article.vote_average
-        layout.elenco2.text = article.overview
+        layout.title2.text = article.title ?: "N/A"
+        layout.release_date2.text = article.release_date
+        layout.rating2.text = article.vote_average
+        layout.overview2.text = article.overview
         (article.poster_path?.isEmpty()).let {
             Picasso.get().load(article.poster_path).into(layout.urlToImage2)
         }
