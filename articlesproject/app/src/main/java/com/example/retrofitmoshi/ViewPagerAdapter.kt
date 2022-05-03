@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 
-class ViewPagerAdapter (fragmentManager: FragmentManager, private val mList: ArrayList<Article>) :
+class ViewPagerAdapter (fragmentManager: FragmentManager, private val mList: ArrayList<Movie>) :
     FragmentStatePagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         val article = mList[position]

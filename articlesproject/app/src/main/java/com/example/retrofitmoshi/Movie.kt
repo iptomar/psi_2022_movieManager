@@ -6,7 +6,7 @@ import kotlinx.android.parcel.RawValue
 import java.util.*
 
 @Parcelize
-data class Article(
+data class Movie(
     //filmes populares
     var adult: Boolean,
     var backdrop_path: String,

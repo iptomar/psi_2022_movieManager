@@ -24,8 +24,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val mList = mutableListOf<Article>()
-    val fList = mutableListOf<Article>()
+    val mList = mutableListOf<Movie>()
+    val fList = mutableListOf<Movie>()
     private val rCode = 1
     private val lCode = 2
 
@@ -122,10 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
         list.addItemDecoration(divider)
 
-        btnNew.setOnClickListener {
-            //val intent = Intent(this, NewArticleActivity::class.java)
-            //startActivityForResult(intent, rCode)
-        }
+
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
@@ -139,7 +136,7 @@ class MainActivity : AppCompatActivity() {
             rCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
-                        val lista = it.getParcelableExtra<Article>("art")
+                        val lista = it.getParcelableExtra<Movie>("art")
                         mList.add(lista)
                         fList.add(lista)
                         list.adapter?.notifyDataSetChanged()

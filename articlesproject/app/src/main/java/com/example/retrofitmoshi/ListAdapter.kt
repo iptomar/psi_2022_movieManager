@@ -14,7 +14,7 @@ import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ListAdapter(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false))

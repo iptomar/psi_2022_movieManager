@@ -22,18 +22,18 @@
     />
 
     <TextView
-        android:id="@+id/lblNome"
+        android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Nome"
-        android:text="Nome"
+        tools:text="Title"
+        android:text="Title"
         android:textColor="#215E21"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/nome2"
+        app:layout_constraintBottom_toTopOf="@id/title2"
         android:layout_marginTop="60dp"
         android:shadowColor="#215E21"
         android:shadowDx="1"
@@ -42,31 +42,30 @@
         />
 
     <TextView
-        android:id="@+id/nome2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="item"
-        android:textSize="17sp"
+        android:id="@+id/title2"
+        android:layout_width="25dp"
+        android:layout_height="18dp"
         android:textColor="#333333"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@id/lblReleaseDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblNome"
-        app:layout_constraintBottom_toTopOf="@id/lblTipo"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblTitle"
+        tools:text="item" />
 
     <TextView
-        android:id="@+id/lblTipo"
+        android:id="@+id/lblReleaseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tipo"
-        tools:text="Tipo"
+        android:text="Release Date"
+        tools:text="Release Date"
         android:textColor="#215E21"
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nome2"
-        app:layout_constraintBottom_toTopOf="@id/tipo2"
+        app:layout_constraintTop_toBottomOf="@id/title2"
+        app:layout_constraintBottom_toTopOf="@id/release_date2"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -74,7 +73,7 @@
         />
 
     <TextView
-        android:id="@+id/tipo2"
+        android:id="@+id/release_date2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="teste"
@@ -83,23 +82,23 @@
         tools:text="item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblTipo"
-        app:layout_constraintBottom_toTopOf="@id/lblRanking"
+        app:layout_constraintTop_toBottomOf="@id/lblReleaseDate"
+        app:layout_constraintBottom_toTopOf="@id/lblRating"
         />
 
     <TextView
-        android:id="@+id/lblRanking"
+        android:id="@+id/lblRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ranking"
-        tools:text="Ranking"
+        android:text="Rating"
+        tools:text="Rating"
         android:textColor="#215E21"
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tipo2"
-        app:layout_constraintBottom_toTopOf="@id/ranking2"
+        app:layout_constraintTop_toBottomOf="@id/release_date2"
+        app:layout_constraintBottom_toTopOf="@id/rating2"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -107,7 +106,7 @@
         />
 
     <TextView
-        android:id="@+id/ranking2"
+        android:id="@+id/rating2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="teste"
@@ -116,23 +115,23 @@
         tools:text="item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblRanking"
-        app:layout_constraintBottom_toTopOf="@id/lblElenco"
+        app:layout_constraintTop_toBottomOf="@id/lblRating"
+        app:layout_constraintBottom_toTopOf="@id/lblOverview"
         />
 
     <TextView
-        android:id="@+id/lblElenco"
+        android:id="@+id/lblOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Elenco"
-        tools:text="Elenco"
+        android:text="Overview"
+        tools:text="Overview"
         android:textColor="#215E21"
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ranking2"
-        app:layout_constraintBottom_toTopOf="@id/elenco2"
+        app:layout_constraintTop_toBottomOf="@id/rating2"
+        app:layout_constraintBottom_toTopOf="@id/overview2"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -140,7 +139,7 @@
         />
 
     <TextView
-        android:id="@+id/elenco2"
+        android:id="@+id/overview2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="teste"
@@ -149,7 +148,7 @@
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblElenco"
+        app:layout_constraintTop_toBottomOf="@id/lblOverview"
         app:layout_constraintBottom_toTopOf="@id/lblUrlToImage"
     />
 
@@ -164,7 +163,7 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/elenco2"
+        app:layout_constraintTop_toBottomOf="@id/overview2"
         app:layout_constraintBottom_toTopOf="@id/urlToImage2"
         android:shadowColor="#215E21"
         android:shadowDx="1"
