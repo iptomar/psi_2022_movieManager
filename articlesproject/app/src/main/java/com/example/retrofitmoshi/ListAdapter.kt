@@ -35,16 +35,16 @@ class ListAdapter(private val itemsList: MutableList<Article>) : RecyclerView.Ad
         layout.release_date.text = article.release_date
         layout.vote_average.text = article.vote_average
         layout.overview.text = article.overview
-        (article.poster_path?.isEmpty()).let {
+        (article.poster_path.isEmpty()).let {
             Picasso.get().load(article.poster_path).into(layout.urlToImage)
         }
 
-        if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {
+        /*if(MainApp.favouritesHelper.getFavouritesList()?.contains(article) == true)  {
             layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
         }
         else{
             layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
-        }
+        }*/
 
         layout.container.btnFavP.setOnClickListener {
             //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity

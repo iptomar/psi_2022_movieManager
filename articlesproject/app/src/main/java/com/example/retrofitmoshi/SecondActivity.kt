@@ -17,7 +17,7 @@ class SecondActivity : AppCompatActivity() {
 
 
 
-        val cont = intent.getStringArrayListExtra(keyList).count()
+        val cont = intent.getStringArrayListExtra(keyList)?.count()
 
         if(cont ==1){
             forwardsArrow.visibility = ViewPager.INVISIBLE

@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {
             override fun onFailure(call: Call<Search>, t: Throwable) {
-                Log.e("onFailure error", t.message)
+                Log.e("onFailure error", call.request().url().toString())
             }
 
             override fun onResponse(call: Call<Search>, response: Response<Search>) {
@@ -140,8 +140,8 @@ class MainActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
                         val lista = it.getParcelableExtra<Article>("art")
-                        mList.add(lista)
-                        fList.add(lista)
+                        mList.add(lista!!)
+                        fList.add(lista!!)
                         list.adapter?.notifyDataSetChanged()
                     }
                 }
