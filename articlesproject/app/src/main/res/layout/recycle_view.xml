@@ -173,12 +173,13 @@
 
     <ImageView
         android:id="@+id/urlToImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblUrlToImage"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="100dp"
         android:adjustViewBounds="true"
     />
 

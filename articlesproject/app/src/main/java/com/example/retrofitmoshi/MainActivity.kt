@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                     //o simbolo de estar a pensar começa a traalhar e quando chega aqui a visibilidade passa a nula, pois estamos a adicionar o texto
                     homeprogress1.visibility = ViewPager.GONE
 
+
                     it.results.forEach { art ->
                         art.id = UUID.randomUUID().toString()
                     }
@@ -117,10 +118,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
+        /*ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
             divider.setDrawable(it)
         }
-        list.addItemDecoration(divider)
+        list.addItemDecoration(divider)*/
 
 
         btnFavsList.setOnClickListener {
