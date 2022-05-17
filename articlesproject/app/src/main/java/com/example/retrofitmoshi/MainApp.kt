@@ -6,7 +6,7 @@ class MainApp : Application() {
 
     companion object {
         lateinit var favouritesHelper: FavouritesHelper
-        val listArt = mutableListOf<Article>()
+        val listArt = mutableListOf<Movie>()
     }
 
     override fun onCreate() {

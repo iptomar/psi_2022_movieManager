@@ -24,8 +24,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val mList = mutableListOf<Article>()
-    val fList = mutableListOf<Article>()
+    val mList = mutableListOf<Movie>()
+    val fList = mutableListOf<Movie>()
     private val rCode = 1
     private val lCode = 2
 
@@ -89,13 +89,14 @@ class MainActivity : AppCompatActivity() {
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {
             override fun onFailure(call: Call<Search>, t: Throwable) {
-                Log.e("onFailure error", t.message)
+                Log.e("onFailure error", call.request().url().toString())
             }
 
             override fun onResponse(call: Call<Search>, response: Response<Search>) {
                 response.body()?.let {
                     //o simbolo de estar a pensar começa a traalhar e quando chega aqui a visibilidade passa a nula, pois estamos a adicionar o texto
                     homeprogress1.visibility = ViewPager.GONE
+
 
                     it.results.forEach { art ->
                         art.id = UUID.randomUUID().toString()
@@ -117,15 +118,11 @@ class MainActivity : AppCompatActivity() {
 
 
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
+        /*ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
             divider.setDrawable(it)
         }
-        list.addItemDecoration(divider)
+        list.addItemDecoration(divider)*/
 
-        btnNew.setOnClickListener {
-            //val intent = Intent(this, NewArticleActivity::class.java)
-            //startActivityForResult(intent, rCode)
-        }
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
@@ -139,9 +136,9 @@ class MainActivity : AppCompatActivity() {
             rCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
-                        val lista = it.getParcelableExtra<Article>("art")
-                        mList.add(lista)
-                        fList.add(lista)
+                        val lista = it.getParcelableExtra<Movie>("art")
+                        mList.add(lista!!)
+                        fList.add(lista!!)
                         list.adapter?.notifyDataSetChanged()
                     }
                 }
