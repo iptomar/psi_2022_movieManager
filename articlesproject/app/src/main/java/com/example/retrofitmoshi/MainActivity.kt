@@ -123,7 +123,6 @@ class MainActivity : AppCompatActivity() {
         }
         list.addItemDecoration(divider)*/
 
-
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
