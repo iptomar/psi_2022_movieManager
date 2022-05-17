@@ -13,8 +13,8 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.recycle_view.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
+import kotlinx.android.synthetic.main.movie_item_view.*
+import kotlinx.android.synthetic.main.movie_item_view.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         //String array.
         val myStrings = arrayOf("Author", "Title", "Clear")
 
+        /*
         //Adapter for spinner
         spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, myStrings)
 
@@ -85,6 +86,8 @@ class MainActivity : AppCompatActivity() {
                 list.adapter?.notifyDataSetChanged()
             }
         }
+         */
+
         val data = LocalDateTime.now().toString().substringBeforeLast("T")
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {

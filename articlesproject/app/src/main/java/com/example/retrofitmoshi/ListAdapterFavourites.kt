@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_favorites_list.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
+import kotlinx.android.synthetic.main.movie_item_view.view.*
 import kotlinx.android.synthetic.main.recyclerview_listafavs.*
 import kotlinx.android.synthetic.main.recyclerview_listafavs.view.*
 import org.joda.time.DateTime

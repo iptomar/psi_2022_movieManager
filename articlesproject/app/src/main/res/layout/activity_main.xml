@@ -1,64 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:background="@drawable/background_color"
-    >
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D4D4D"
+    tools:context=".MainActivity">
 
 
     <ImageView
-            android:id="@+id/btnFavsList"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_favslist"
-    />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:minHeight="48dp"
+        android:id="@+id/btnFavsList"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_favslist"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#ddeae0"
-        android:shadowColor="#499f7e"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="16dp"
+        android:background="#4D4D4D4D"
+        android:shadowColor="#FFFFFF"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.7"
         android:text="Submit"
-        android:textColor="#499f7e"
+        android:textAlignment="center"
+        android:textColor="#FFC107"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblEdit"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck,TextContrastCheck"
-        tools:text="Submit" />
-
+        tools:text="Search" />
 
     <EditText
         android:id="@+id/lblEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="276dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="118dp"
         android:backgroundTint="#ababab"
         android:hint="Example"
         android:inputType="text"
@@ -69,23 +56,21 @@
         android:textColor="#333333"
         android:textColorHint="#aaaaaa"
         android:textCursorDrawable="@null"
+
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/spinner" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-            android:id="@+id/homeprogress1"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/homeprogress1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
