@@ -1,7 +1,6 @@
 package com.example.retrofitmoshi
 
 import android.content.Intent
-import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,12 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_pager.*
 import kotlinx.android.synthetic.main.recycle_view.*
 import kotlinx.android.synthetic.main.recycle_view.view.*
-import org.joda.time.DateTime
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_item_view, parent, false))
     }
 
 
