@@ -13,8 +13,8 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.recycle_view.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
+import kotlinx.android.synthetic.main.movie_item_view.*
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

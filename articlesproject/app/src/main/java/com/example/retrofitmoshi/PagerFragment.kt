@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_second.*
 
 import kotlinx.android.synthetic.main.fragment_pager.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
+
 
 
 class PagerFragment : Fragment() {
