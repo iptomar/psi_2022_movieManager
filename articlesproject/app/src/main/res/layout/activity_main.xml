@@ -10,20 +10,19 @@
 
     <ImageView
         android:id="@+id/btnFavsList"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
+        android:layout_width="42dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="348dp"
         android:src="@drawable/ic_favslist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:background="#4D4D4D4D"
         android:shadowColor="#FFFFFF"
@@ -44,8 +43,8 @@
         android:id="@+id/lblEdit"
         android:layout_width="276dp"
         android:layout_height="48dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginEnd="118dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="116dp"
         android:backgroundTint="#ababab"
         android:hint="Example"
         android:inputType="text"
@@ -53,8 +52,8 @@
         android:maxLines="1"
         android:minHeight="48dp"
         android:textAlignment="center"
-        android:textColor="#333333"
-        android:textColorHint="#aaaaaa"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textCursorDrawable="@null"
 
         android:textSize="17sp"
@@ -74,18 +73,18 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="369dp"
+        android:layout_height="700dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="2dp"
         android:orientation="vertical"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblEdit"
-        app:layout_constraintVertical_bias="0.982" />
+        app:layout_constraintVertical_bias="0.713" />
 
 </android.support.constraint.ConstraintLayout>

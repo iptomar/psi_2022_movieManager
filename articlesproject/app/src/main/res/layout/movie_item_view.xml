@@ -1,187 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        android:id="@+id/container"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-    android:clipToPadding="false">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D4D4D"
+    android:backgroundTint="#4D4D4D"
+    android:clipToPadding="false"
+    >
 
 
     <ImageView
-            android:id="@+id/btnFavP"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/ic_favunpressed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-    />
+        android:id="@+id/btnFavP"
+        android:layout_width="48dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_favunpressed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Title"
-        android:text="Title"
-        android:textColor="#215E21"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/title"
         android:layout_marginTop="60dp"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.7"
-        />
+        android:text="Title:"
+        android:textColor="#FFC107"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="item"
+        android:layout_marginTop="64dp"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
-        android:textColor="#333333"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblTitle"
-        app:layout_constraintBottom_toTopOf="@id/lblReleaseDate"
-        />
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toEndOf="@+id/lblTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="item" />
 
     <TextView
         android:id="@+id/lblReleaseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Release Date"
-        tools:text="Release Date"
-        android:textColor="#215E21"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintBottom_toTopOf="@id/release_date"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.7"
-        />
+        android:text="Release Date:"
+        android:textColor="#FFC107"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/release_date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Release Date" />
 
     <TextView
         android:id="@+id/release_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="144dp"
         android:text="teste"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
-        android:textColor="#333333"
-        tools:text="item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblReleaseDate"
-        app:layout_constraintBottom_toTopOf="@id/lblVote"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="item" />
 
     <TextView
         android:id="@+id/lblVote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating"
-        tools:text="Rating"
-        android:textColor="#215E21"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/release_date"
-        app:layout_constraintBottom_toTopOf="@id/vote_average"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.7"
-        />
+        android:text="Rating:"
+        android:textColor="#FFC107"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+        tools:text="Rating" />
 
     <TextView
         android:id="@+id/vote_average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:text="teste"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
-        android:textColor="#333333"
-        tools:text="item"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblVote"
-        app:layout_constraintBottom_toTopOf="@id/lblOverview"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/lblReleaseDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblVote"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="item" />
+
 
     <TextView
         android:id="@+id/lblOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Overview"
-        tools:text="Overview"
-        android:textColor="#215E21"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vote_average"
-        app:layout_constraintBottom_toTopOf="@id/overview"
+        android:layout_marginTop="48dp"
         android:shadowColor="#215E21"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.7"
-        />
+        android:text="Overview:"
+        android:textColor="#FFC107"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblVote"
+        tools:text="Overview" />
 
     <TextView
         android:id="@+id/overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="teste"
-        android:textColor="#333333"
-        tools:text="item"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblOverview"
-        app:layout_constraintBottom_toTopOf="@id/lblUrlToImage"
-    />
-
-    <TextView
-        android:id="@+id/lblUrlToImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="URLToImage"
-        tools:text="URLToImage"
-        android:textColor="#215E21"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview"
-        app:layout_constraintBottom_toTopOf="@id/urlToImage"
-        android:shadowColor="#215E21"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1.7"
-    />
-
+        app:layout_constraintTop_toBottomOf="@+id/lblOverview"
+        tools:text="item" />
 
     <ImageView
         android:id="@+id/urlToImage"
+        android:layout_width="181dp"
+        android:layout_height="219dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/overview" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:text="_________________________________________________________"
+        android:textColor="#333333"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblUrlToImage"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="100dp"
-        android:adjustViewBounds="true"
-    />
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/urlToImage" />
 
 
 </android.support.constraint.ConstraintLayout>
