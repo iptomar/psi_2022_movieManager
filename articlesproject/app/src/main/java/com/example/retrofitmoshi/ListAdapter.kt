@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_pager.*
-import kotlinx.android.synthetic.main.movie_item_view.*
 import kotlinx.android.synthetic.main.movie_item_view.view.*
 import java.util.*
 
