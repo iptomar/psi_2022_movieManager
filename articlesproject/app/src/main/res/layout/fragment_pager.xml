@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             tools:text="teste"
             android:textSize="20dp"
-            android:textColor="#215E21"
+            android:textColor="#ffffff"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
