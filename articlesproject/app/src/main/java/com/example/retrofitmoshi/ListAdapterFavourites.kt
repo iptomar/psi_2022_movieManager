@@ -1,24 +1,14 @@
 package com.example.retrofitmoshi
 
-import android.content.Intent
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_favorites_list.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
-import kotlinx.android.synthetic.main.recyclerview_listafavs.*
 import kotlinx.android.synthetic.main.recyclerview_listafavs.view.*
-import org.joda.time.DateTime
-import java.text.SimpleDateFormat
-import java.util.*
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.content.Intent.getIntentOld
-import android.support.v4.content.ContextCompat.*
+import androidx.recyclerview.widget.RecyclerView
 
 
-class ListAdapterFavourites(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapterFavourites(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
         return ListAdapter.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_listafavs, parent, false))

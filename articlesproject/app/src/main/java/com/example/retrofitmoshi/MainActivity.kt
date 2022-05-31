@@ -4,14 +4,14 @@ package com.example.retrofitmoshi
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.DividerItemDecoration
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recycle_view.*
 import kotlinx.android.synthetic.main.recycle_view.view.*
@@ -24,8 +24,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val mList = mutableListOf<Article>()
-    val fList = mutableListOf<Article>()
+    val mList = mutableListOf<Movie>()
+    val fList = mutableListOf<Movie>()
     private val rCode = 1
     private val lCode = 2
 
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {
             override fun onFailure(call: Call<Search>, t: Throwable) {
-                Log.e("onFailure error", t.message)
+                Log.e("onFailure error", t.message!!)
             }
 
             override fun onResponse(call: Call<Search>, response: Response<Search>) {
@@ -122,10 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
         list.addItemDecoration(divider)
 
-        btnNew.setOnClickListener {
-            //val intent = Intent(this, NewArticleActivity::class.java)
-            //startActivityForResult(intent, rCode)
-        }
+
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
@@ -139,9 +136,9 @@ class MainActivity : AppCompatActivity() {
             rCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
-                        val lista = it.getParcelableExtra<Article>("art")
-                        mList.add(lista)
-                        fList.add(lista)
+                        val lista = it.getParcelableExtra<Movie>("art")
+                        mList.add(lista!!)
+                        fList.add(lista!!)
                         list.adapter?.notifyDataSetChanged()
                     }
                 }

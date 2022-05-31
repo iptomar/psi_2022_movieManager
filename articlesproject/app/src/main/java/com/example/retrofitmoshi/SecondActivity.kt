@@ -1,8 +1,8 @@
 package com.example.retrofitmoshi
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class SecondActivity : AppCompatActivity() {
 
 
 
-        val cont = intent.getStringArrayListExtra(keyList).count()
+        val cont = intent.getStringArrayListExtra(keyList)?.count()
 
         if(cont ==1){
             forwardsArrow.visibility = ViewPager.INVISIBLE

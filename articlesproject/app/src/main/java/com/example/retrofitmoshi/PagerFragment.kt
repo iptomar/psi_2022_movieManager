@@ -1,12 +1,13 @@
 package com.example.retrofitmoshi
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
+
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_second.*
@@ -73,7 +74,7 @@ class PagerFragment : Fragment() {
         val article = MainApp.listArt.first{it.id == arguments?.getString(ID_KEY)}
 
         //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
-        if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {
+        if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)== true)  {
             btnFavUnpressed.setImageResource(R.drawable.ic_favpressed)
         }else{
             btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)
@@ -82,7 +83,7 @@ class PagerFragment : Fragment() {
 
         btnFavUnpressed.setOnClickListener {
             //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
-            if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {
+            if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)==true)  {
                 btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)
                 MainApp.favouritesHelper.removeFavourite(article)
             }else{

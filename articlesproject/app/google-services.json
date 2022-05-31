@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "469575577608",
+    "project_id": "moviemanager-deee0",
+    "storage_bucket": "moviemanager-deee0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469575577608:android:67560b8994fc05bbc121bd",
+        "android_client_info": {
+          "package_name": "com.example.retrofitmoshi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469575577608-6q00tb6vfnbcmlp9k0kcmqvc12ft3kpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBqshQ4k5jy-jUZXXnb5spGLK-TDKZW7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469575577608-6q00tb6vfnbcmlp9k0kcmqvc12ft3kpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

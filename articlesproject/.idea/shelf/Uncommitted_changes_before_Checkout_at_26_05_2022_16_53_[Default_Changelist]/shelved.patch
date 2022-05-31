@@ -1,0 +1,1083 @@
+Index: app/src/main/java/com/example/retrofitmoshi/API.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\n\r\nimport retrofit2.Call\r\nimport retrofit2.Retrofit\r\nimport retrofit2.converter.moshi.MoshiConverterFactory\r\nimport retrofit2.http.GET\r\nimport retrofit2.http.Query\r\n\r\n// ========== For Retrofit ==========\r\ninterface API {\r\n\r\n    @GET(\"popular\")\r\n    fun getData(@Query(\"apiKey\")apiKey:String =\"b8814faf945926a08a13e82c21a9e0cb\"):Call<Search>\r\n\r\n    companion object{\r\n        fun create(): API {\r\n            val retrofit = Retrofit.Builder()\r\n                .addConverterFactory(MoshiConverterFactory.create())\r\n                .baseUrl(\"https://api.themoviedb.org/3/movie/\")\r\n                .build()\r\n\r\n            return retrofit.create(API::class.java)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/API.kt b/app/src/main/java/com/example/retrofitmoshi/API.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/API.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/API.kt	(date 1653534876000)
+@@ -10,14 +10,14 @@
+ // ========== For Retrofit ==========
+ interface API {
+ 
+-    @GET("popular")
+-    fun getData(@Query("apiKey")apiKey:String ="b8814faf945926a08a13e82c21a9e0cb"):Call<Search>
++    @GET("3/movie/popular")
++    fun getData(@Query("api_key")apiKey:String ="b8814faf945926a08a13e82c21a9e0cb"):Call<Search>
+ 
+     companion object{
+         fun create(): API {
+             val retrofit = Retrofit.Builder()
+                 .addConverterFactory(MoshiConverterFactory.create())
+-                .baseUrl("https://api.themoviedb.org/3/movie/")
++                .baseUrl("https://api.themoviedb.org/")
+                 .build()
+ 
+             return retrofit.create(API::class.java)
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n          package=\"com.example.retrofitmoshi\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>\r\n\r\n    <application\r\n            android:name=\".MainApp\"\r\n            android:allowBackup=\"true\"\r\n            android:icon=\"@mipmap/ic_launcher\"\r\n            android:label=\"@string/app_name\"\r\n            android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n            android:supportsRtl=\"true\"\r\n            android:theme=\"@style/AppTheme\">\r\n        <activity android:name=\".FavoritesList\">\r\n        </activity>\r\n        <activity\r\n                android:name=\".SecondActivity\"\r\n                android:parentActivityName=\".MainActivity\">\r\n        </activity>\r\n        <activity\r\n                android:name=\".MainActivity\"\r\n                android:launchMode=\"singleTop\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\"/>\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\"/>\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/AndroidManifest.xml	(date 1653536008086)
+@@ -22,6 +22,14 @@
+         <activity
+                 android:name=".MainActivity"
+                 android:launchMode="singleTop">
++        </activity>
++        <activity
++            android:name=".LoginActivity"
++            android:parentActivityName=".MainActivity">
++        </activity>
++        <activity
++            android:name=".RegisterActivity"
++            android:parentActivityName=".MainActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN"/>
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n\r\napply plugin: 'kotlin-android'\r\n\r\napply plugin: 'kotlin-android-extensions'\r\n\r\nandroid {\r\n    compileSdkVersion 28\r\n    defaultConfig {\r\n        applicationId \"com.example.retrofitmoshi\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 28\r\n        versionCode 1\r\n        versionName \"1.1\"\r\n        testInstrumentationRunner \"android.support.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    androidExtensions {\r\n        experimental = true\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n    implementation 'com.android.support:appcompat-v7:28.0.0'\r\n    implementation 'com.android.support.constraint:constraint-layout:1.1.3'\r\n    implementation 'com.android.support:support-v4:28.0.0'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'com.android.support.test:runner:1.0.2'\r\n    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'\r\n\r\n    implementation \"com.android.support:recyclerview-v7:28.0.0\"\r\n    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'\r\n    implementation 'com.squareup.retrofit2:retrofit:2.5.0'\r\n    implementation 'com.squareup.moshi:moshi:1.5.0'\r\n\r\n    implementation 'joda-time:joda-time:2.10.1'\r\n    implementation 'com.squareup.picasso:picasso:2.71828'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/build.gradle	(date 1653536558468)
+@@ -3,13 +3,14 @@
+ apply plugin: 'kotlin-android'
+ 
+ apply plugin: 'kotlin-android-extensions'
++apply plugin: 'com.google.gms.google-services'
+ 
+ android {
+-    compileSdkVersion 28
++    compileSdkVersion 30
+     defaultConfig {
+         applicationId "com.example.retrofitmoshi"
+         minSdkVersion 21
+-        targetSdkVersion 28
++        targetSdkVersion 30
+         versionCode 1
+         versionName "1.1"
+         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+@@ -32,6 +33,7 @@
+     implementation 'com.android.support:appcompat-v7:28.0.0'
+     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+     implementation 'com.android.support:support-v4:28.0.0'
++    implementation 'com.google.firebase:firebase-auth-ktx:21.0.4'
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\n\r\nbuildscript {\r\n    ext.kotlin_version = '1.3.40'\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        \r\n    }\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:7.1.3'\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        \r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/build.gradle	(date 1653536784310)
+@@ -1,15 +1,16 @@
+ // Top-level build file where you can add configuration options common to all sub-projects/modules.
+ 
+ buildscript {
+-    ext.kotlin_version = '1.3.40'
++    ext.kotlin_version = '1.6.0'
+     repositories {
+         google()
+-        jcenter()
++        mavenCentral()
+         
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:7.1.3'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
++        classpath 'com.google.gms:google-services:4.3.10'
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+     }
+@@ -18,7 +19,7 @@
+ allprojects {
+     repositories {
+         google()
+-        jcenter()
++        mavenCentral()
+         
+     }
+ }
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout\r\n        xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        tools:context=\".MainActivity\"\r\n        android:background=\"@drawable/background_color\"\r\n    >\r\n\r\n    <android.support.v7.widget.Toolbar\r\n        android:id=\"@+id/toolbar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"?attr/actionBarSize\"\r\n        android:background=\"#ffd4e4dc\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\">\r\n\r\n        <TextView\r\n            android:textColor=\"#102E12\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:textAppearance=\"?android:attr/textAppearanceLarge\"\r\n            android:layout_gravity=\"center\"\r\n            android:text=\"@string/app_name\"\r\n            android:fontFamily=\"serif-monospace\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"30dp\"\r\n            />\r\n    </android.support.v7.widget.Toolbar>\r\n\r\n\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblFilter\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Choose a filter\"\r\n        tools:text=\"Choose a filter\"\r\n        android:textColor=\"#215E21\"\r\n        android:textSize=\"30sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/toolbar\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:layout_marginTop=\"10dp\"\r\n        />\r\n\r\n    <ImageView\r\n            android:id=\"@+id/btnNew\"\r\n            android:layout_width=\"30dp\"\r\n            android:layout_height=\"30dp\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/toolbar\"\r\n            android:layout_marginTop=\"5dp\"\r\n            android:layout_marginEnd=\"5dp\"\r\n            android:src=\"@drawable/ic_new\"\r\n    />\r\n    <ImageView\r\n            android:id=\"@+id/btnFavsList\"\r\n            android:layout_width=\"30dp\"\r\n            android:layout_height=\"30dp\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/btnNew\"\r\n            android:layout_marginTop=\"5dp\"\r\n            android:layout_marginEnd=\"5dp\"\r\n            android:src=\"@drawable/ic_favslist\"\r\n    />\r\n\r\n    <Spinner\r\n        android:id=\"@+id/spinner\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:minHeight=\"48dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblFilter\"\r\n        tools:ignore=\"SpeakableTextPresentCheck\" />\r\n\r\n\r\n    <Button\r\n        android:id=\"@+id/btnSubmit\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:background=\"#ddeae0\"\r\n        android:shadowColor=\"#499f7e\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        android:text=\"Submit\"\r\n        android:textColor=\"#499f7e\"\r\n        android:textSize=\"14sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblEdit\"\r\n        tools:ignore=\"TextContrastCheck,TextContrastCheck\"\r\n        tools:text=\"Submit\" />\r\n\r\n\r\n    <EditText\r\n        android:id=\"@+id/lblEdit\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:backgroundTint=\"#ababab\"\r\n        android:hint=\"Example\"\r\n        android:inputType=\"text\"\r\n        android:maxLength=\"30\"\r\n        android:maxLines=\"1\"\r\n        android:minHeight=\"48dp\"\r\n        android:textAlignment=\"center\"\r\n        android:textColor=\"#333333\"\r\n        android:textColorHint=\"#aaaaaa\"\r\n        android:textCursorDrawable=\"@null\"\r\n        android:textSize=\"17sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n\r\n        app:layout_constraintTop_toBottomOf=\"@id/spinner\" />\r\n\r\n\r\n    <ProgressBar\r\n            android:id=\"@+id/homeprogress1\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"/>\r\n\r\n    <android.support.v7.widget.RecyclerView\r\n        android:id=\"@+id/list\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        app:layoutManager=\"android.support.v7.widget.LinearLayoutManager\"\r\n        android:orientation=\"vertical\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblEdit\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        android:layout_marginTop=\"280dp\"\r\n        android:layout_marginStart=\"17dp\"\r\n        android:layout_marginEnd=\"2dp\"\r\n          />\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1653535228231)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout
++<androidx.constraintlayout.widget.ConstraintLayout
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+@@ -9,7 +9,7 @@
+         android:background="@drawable/background_color"
+     >
+ 
+-    <android.support.v7.widget.Toolbar
++    <androidx.appcompat.widget.Toolbar
+         android:id="@+id/toolbar"
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+@@ -28,7 +28,7 @@
+             android:textStyle="bold"
+             android:textSize="30dp"
+             />
+-    </android.support.v7.widget.Toolbar>
++    </androidx.appcompat.widget.Toolbar>
+ 
+ 
+ 
+@@ -136,11 +136,11 @@
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent"/>
+ 
+-    <android.support.v7.widget.RecyclerView
++    <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/list"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
++        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+         android:orientation="vertical"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -151,4 +151,4 @@
+         android:layout_marginEnd="2dp"
+           />
+ 
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/retrofitmoshi/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\n\r\nimport android.app.Activity\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.support.v7.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.support.v4.content.ContextCompat\r\nimport android.support.v4.view.ViewPager\r\nimport android.support.v7.widget.DividerItemDecoration\r\nimport android.util.Log\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.ArrayAdapter\r\nimport kotlinx.android.synthetic.main.activity_main.*\r\nimport kotlinx.android.synthetic.main.recycle_view.*\r\nimport kotlinx.android.synthetic.main.recycle_view.view.*\r\nimport retrofit2.Call\r\nimport retrofit2.Callback\r\nimport retrofit2.Response\r\nimport org.joda.time.LocalDateTime\r\nimport java.util.*\r\n\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n    val mList = mutableListOf<Article>()\r\n    val fList = mutableListOf<Article>()\r\n    private val rCode = 1\r\n    private val lCode = 2\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main)\r\n\r\n        list.adapter = ListAdapter(fList)\r\n\r\n        //String array.\r\n        val myStrings = arrayOf(\"Author\", \"Title\", \"Clear\")\r\n\r\n        //Adapter for spinner\r\n        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, myStrings)\r\n\r\n        btnSubmit.setOnClickListener {\r\n\r\n            if (spinner.selectedItem == myStrings[0]) {\r\n                val searchTxt = lblEdit.text.toString()\r\n                //teclado desaparece\r\n                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\r\n                imm.hideSoftInputFromWindow(lblEdit.windowToken, 0)\r\n\r\n                fList.clear()\r\n                fList.addAll(\r\n                    mList.filter {\r\n                        it.title?.toLowerCase()?.contains(searchTxt.toLowerCase()) == true\r\n                    }\r\n                )\r\n                list.adapter?.notifyDataSetChanged()\r\n            }\r\n\r\n            if (spinner.selectedItem == myStrings[1]) {\r\n\r\n                val searchTxt = lblEdit.text.toString()\r\n                //teclado desaparece\r\n                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\r\n                imm.hideSoftInputFromWindow(lblEdit.windowToken, 0)\r\n\r\n                fList.clear()\r\n                fList.addAll(\r\n                    mList.filter {\r\n                        it.release_date?.toLowerCase()?.contains(searchTxt.toLowerCase()) == true\r\n                    }\r\n                )\r\n                list.adapter?.notifyDataSetChanged()\r\n            }\r\n\r\n            if (spinner.selectedItem == myStrings[2]) {\r\n                //teclado desaparece\r\n                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\r\n                imm.hideSoftInputFromWindow(lblEdit.windowToken, 0)\r\n\r\n                fList.clear()\r\n                fList.addAll(mList)\r\n                lblEdit.text.clear()\r\n                list.adapter?.notifyDataSetChanged()\r\n            }\r\n        }\r\n        val data = LocalDateTime.now().toString().substringBeforeLast(\"T\")\r\n        val call = API.create().getData()\r\n        call.enqueue(object : Callback<Search> {\r\n            override fun onFailure(call: Call<Search>, t: Throwable) {\r\n                Log.e(\"onFailure error\", t.message)\r\n            }\r\n\r\n            override fun onResponse(call: Call<Search>, response: Response<Search>) {\r\n                response.body()?.let {\r\n                    //o simbolo de estar a pensar começa a traalhar e quando chega aqui a visibilidade passa a nula, pois estamos a adicionar o texto\r\n                    homeprogress1.visibility = ViewPager.GONE\r\n\r\n                    it.results.forEach { art ->\r\n                        art.id = UUID.randomUUID().toString()\r\n                    }\r\n\r\n                    mList.clear()\r\n                    mList.addAll(it.results)\r\n\r\n                    fList.clear()\r\n                    fList.addAll(it.results)\r\n\r\n                    MainApp.listArt.clear()\r\n                    MainApp.listArt.addAll(it.results)\r\n\r\n                    list.adapter?.notifyDataSetChanged()\r\n                }\r\n            }\r\n        })\r\n\r\n\r\n        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)\r\n        ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {\r\n            divider.setDrawable(it)\r\n        }\r\n        list.addItemDecoration(divider)\r\n\r\n        btnNew.setOnClickListener {\r\n            //val intent = Intent(this, NewArticleActivity::class.java)\r\n            //startActivityForResult(intent, rCode)\r\n        }\r\n        btnFavsList.setOnClickListener {\r\n            val intent = Intent(this, FavoritesList::class.java)\r\n            startActivityForResult(intent, lCode)\r\n        }\r\n    }\r\n\r\n    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {\r\n        super.onActivityResult(requestCode, resultCode, data)\r\n\r\n        when (requestCode) {\r\n            rCode -> {\r\n                if (resultCode == Activity.RESULT_OK) {\r\n                    data?.let {\r\n                        val lista = it.getParcelableExtra<Article>(\"art\")\r\n                        mList.add(lista)\r\n                        fList.add(lista)\r\n                        list.adapter?.notifyDataSetChanged()\r\n                    }\r\n                }\r\n            }\r\n            lCode -> {\r\n                if (resultCode == Activity.RESULT_OK) {\r\n                    data?.let {\r\n                        btnFavP.setImageResource(R.drawable.ic_favunpressed)\r\n                        list.adapter?.notifyDataSetChanged()\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/MainActivity.kt b/app/src/main/java/com/example/retrofitmoshi/MainActivity.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/MainActivity.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/MainActivity.kt	(date 1653580175020)
+@@ -4,14 +4,14 @@
+ import android.app.Activity
+ import android.content.Context
+ import android.content.Intent
+-import android.support.v7.app.AppCompatActivity
+ import android.os.Bundle
+-import android.support.v4.content.ContextCompat
+-import android.support.v4.view.ViewPager
+-import android.support.v7.widget.DividerItemDecoration
+ import android.util.Log
+ import android.view.inputmethod.InputMethodManager
+ import android.widget.ArrayAdapter
++import androidx.appcompat.app.AppCompatActivity
++import androidx.core.content.ContextCompat
++import androidx.recyclerview.widget.DividerItemDecoration
++import androidx.viewpager.widget.ViewPager
+ import kotlinx.android.synthetic.main.activity_main.*
+ import kotlinx.android.synthetic.main.recycle_view.*
+ import kotlinx.android.synthetic.main.recycle_view.view.*
+@@ -24,8 +24,8 @@
+ 
+ class MainActivity : AppCompatActivity() {
+ 
+-    val mList = mutableListOf<Article>()
+-    val fList = mutableListOf<Article>()
++    val mList = mutableListOf<Movie>()
++    val fList = mutableListOf<Movie>()
+     private val rCode = 1
+     private val lCode = 2
+ 
+@@ -89,7 +89,7 @@
+         val call = API.create().getData()
+         call.enqueue(object : Callback<Search> {
+             override fun onFailure(call: Call<Search>, t: Throwable) {
+-                Log.e("onFailure error", t.message)
++                Log.e("onFailure error", t.message!!)
+             }
+ 
+             override fun onResponse(call: Call<Search>, response: Response<Search>) {
+@@ -122,10 +122,7 @@
+         }
+         list.addItemDecoration(divider)
+ 
+-        btnNew.setOnClickListener {
+-            //val intent = Intent(this, NewArticleActivity::class.java)
+-            //startActivityForResult(intent, rCode)
+-        }
++
+         btnFavsList.setOnClickListener {
+             val intent = Intent(this, FavoritesList::class.java)
+             startActivityForResult(intent, lCode)
+@@ -139,9 +136,9 @@
+             rCode -> {
+                 if (resultCode == Activity.RESULT_OK) {
+                     data?.let {
+-                        val lista = it.getParcelableExtra<Article>("art")
+-                        mList.add(lista)
+-                        fList.add(lista)
++                        val lista = it.getParcelableExtra<Movie>("art")
++                        mList.add(lista!!)
++                        fList.add(lista!!)
+                         list.adapter?.notifyDataSetChanged()
+                     }
+                 }
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"BintrayJCenter\" />\r\n      <option name=\"name\" value=\"BintrayJCenter\" />\r\n      <option name=\"url\" value=\"https://jcenter.bintray.com/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"Google\" />\r\n      <option name=\"name\" value=\"Google\" />\r\n      <option name=\"url\" value=\"https://dl.google.com/dl/android/maven2/\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+--- a/.idea/jarRepositories.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/.idea/jarRepositories.xml	(date 1653536241988)
+@@ -21,5 +21,10 @@
+       <option name="name" value="Google" />
+       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
+     </remote-repository>
++    <remote-repository>
++      <option name="id" value="MavenRepo" />
++      <option name="name" value="MavenRepo" />
++      <option name="url" value="https://repo.maven.apache.org/maven2/" />
++    </remote-repository>
+   </component>
+ </project>
+\ No newline at end of file
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Project-wide Gradle settings.\r\n# IDE (e.g. Android Studio) users:\r\n# Gradle settings configured through the IDE *will override*\r\n# any settings specified in this file.\r\n# For more details on how to configure your build environment visit\r\n# http://www.gradle.org/docs/current/userguide/build_environment.html\r\n# Specifies the JVM arguments used for the daemon process.\r\n# The setting is particularly useful for tweaking memory settings.\r\norg.gradle.jvmargs=-Xmx1536m\r\n# When configured, Gradle will run in incubating parallel mode.\r\n# This option should only be used with decoupled projects. More details, visit\r\n# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects\r\n# org.gradle.parallel=true\r\n# Kotlin code style for this project: \"official\" or \"obsolete\":\r\nkotlin.code.style=official\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle.properties b/gradle.properties
+--- a/gradle.properties	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/gradle.properties	(date 1653534987852)
+@@ -13,3 +13,5 @@
+ # org.gradle.parallel=true
+ # Kotlin code style for this project: "official" or "obsolete":
+ kotlin.code.style=official
++android.enableJetifier=true
++android.useAndroidX=true
+\ No newline at end of file
+Index: app/src/main/java/com/example/retrofitmoshi/FavoritesList.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.app.Activity\r\nimport android.app.Instrumentation\r\nimport android.content.Intent\r\nimport android.support.v7.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.support.v7.recyclerview.extensions.ListAdapter\r\nimport android.support.v7.widget.GridLayoutManager\r\nimport kotlinx.android.synthetic.main.activity_favorites_list.*\r\nimport kotlinx.android.synthetic.main.fragment_pager.*\r\nimport kotlinx.android.synthetic.main.recycle_view.*\r\nimport kotlinx.android.synthetic.main.recycle_view.view.*\r\n\r\n\r\nclass FavoritesList : AppCompatActivity() {\r\n    val mList = mutableListOf<Article>()\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_favorites_list)\r\n\r\n        mList.addAll(MainApp.favouritesHelper.getFavouritesList() ?: listOf())\r\n\r\n        listFav.adapter = ListAdapterFavourites(mList)\r\n\r\n\r\n        listFav.adapter?.notifyDataSetChanged()\r\n\r\n        listFav.layoutManager = GridLayoutManager(this, 2)\r\n\r\n        btnGoBackMain?.setOnClickListener {\r\n            setResult(Activity.RESULT_OK, Intent())\r\n            finish()\r\n        }\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/FavoritesList.kt b/app/src/main/java/com/example/retrofitmoshi/FavoritesList.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/FavoritesList.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/FavoritesList.kt	(date 1653535329669)
+@@ -1,20 +1,15 @@
+ package com.example.retrofitmoshi
+ 
+ import android.app.Activity
+-import android.app.Instrumentation
+ import android.content.Intent
+-import android.support.v7.app.AppCompatActivity
+ import android.os.Bundle
+-import android.support.v7.recyclerview.extensions.ListAdapter
+-import android.support.v7.widget.GridLayoutManager
++import androidx.appcompat.app.AppCompatActivity
++import androidx.recyclerview.widget.GridLayoutManager
+ import kotlinx.android.synthetic.main.activity_favorites_list.*
+-import kotlinx.android.synthetic.main.fragment_pager.*
+-import kotlinx.android.synthetic.main.recycle_view.*
+-import kotlinx.android.synthetic.main.recycle_view.view.*
+ 
+ 
+ class FavoritesList : AppCompatActivity() {
+-    val mList = mutableListOf<Article>()
++    val mList = mutableListOf<Movie>()
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_favorites_list)
+Index: app/src/main/java/com/example/retrofitmoshi/FavouritesHelper.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.content.Context\r\nimport android.content.SharedPreferences\r\nimport com.squareup.moshi.Moshi\r\nimport com.squareup.moshi.Types\r\nimport kotlinx.android.synthetic.main.activity_favorites_list.*\r\n\r\nclass FavouritesHelper(context: Context) {\r\n\r\n    private val adapterType = Types.newParameterizedType(List::class.java, Article::class.java)\r\n    private val jsonAdapter = Moshi.Builder().build().adapter<List<Article>>(adapterType)\r\n\r\n    companion object {\r\n        const val FAVOURITES_KEY = \"favourites\"\r\n    }\r\n\r\n    fun getFavouritesList(): List<Article>? {\r\n        val json = mSharedPreferences.getString(FAVOURITES_KEY, null)\r\n        json?.let {\r\n            return jsonAdapter.fromJson(json)\r\n        }\r\n        return null\r\n    }\r\n\r\n    fun addFavourite(article: Article) {\r\n        val favourites = getFavouritesList()\r\n\r\n        if (favourites == null) {\r\n            val newList = mutableListOf(article)\r\n\r\n            mSharedPreferences.edit()\r\n                .putString(FAVOURITES_KEY, jsonAdapter.toJson(newList))\r\n                .apply()\r\n        } else {\r\n            val tempList = favourites.toMutableList()\r\n            tempList.add(article)\r\n\r\n\r\n            mSharedPreferences.edit()\r\n                .putString(FAVOURITES_KEY, jsonAdapter.toJson(tempList))\r\n                .apply()\r\n        }\r\n    }\r\n\r\n    fun removeFavourite(article: Article) {\r\n\r\n        val favourites = getFavouritesList()\r\n        if (favourites != null) {\r\n            val tempList = favourites.toMutableList()\r\n            tempList.remove(article)\r\n            mSharedPreferences.edit()\r\n                .putString(FAVOURITES_KEY, jsonAdapter.toJson(tempList))\r\n                .apply()\r\n\r\n\r\n        }\r\n    }\r\n    fun containsFavourite(article: Article) {\r\n        val favourites = getFavouritesList()\r\n\r\n        favourites?.contains(article).let {\r\n            addFavourite(article)\r\n        }\r\n\r\n    }\r\n\r\n    private val mSharedPreferences: SharedPreferences by lazy {\r\n        context.getSharedPreferences(\r\n            context.getString(R.string.app_name),\r\n            Context.MODE_PRIVATE\r\n        )\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/FavouritesHelper.kt b/app/src/main/java/com/example/retrofitmoshi/FavouritesHelper.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/FavouritesHelper.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/FavouritesHelper.kt	(date 1653535153208)
+@@ -8,14 +8,14 @@
+ 
+ class FavouritesHelper(context: Context) {
+ 
+-    private val adapterType = Types.newParameterizedType(List::class.java, Article::class.java)
+-    private val jsonAdapter = Moshi.Builder().build().adapter<List<Article>>(adapterType)
++    private val adapterType = Types.newParameterizedType(List::class.java, Movie::class.java)
++    private val jsonAdapter = Moshi.Builder().build().adapter<List<Movie>>(adapterType)
+ 
+     companion object {
+         const val FAVOURITES_KEY = "favourites"
+     }
+ 
+-    fun getFavouritesList(): List<Article>? {
++    fun getFavouritesList(): List<Movie>? {
+         val json = mSharedPreferences.getString(FAVOURITES_KEY, null)
+         json?.let {
+             return jsonAdapter.fromJson(json)
+@@ -23,7 +23,7 @@
+         return null
+     }
+ 
+-    fun addFavourite(article: Article) {
++    fun addFavourite(article: Movie) {
+         val favourites = getFavouritesList()
+ 
+         if (favourites == null) {
+@@ -43,7 +43,7 @@
+         }
+     }
+ 
+-    fun removeFavourite(article: Article) {
++    fun removeFavourite(article: Movie) {
+ 
+         val favourites = getFavouritesList()
+         if (favourites != null) {
+@@ -56,7 +56,7 @@
+ 
+         }
+     }
+-    fun containsFavourite(article: Article) {
++    fun containsFavourite(article: Movie) {
+         val favourites = getFavouritesList()
+ 
+         favourites?.contains(article).let {
+Index: app/src/main/java/com/example/retrofitmoshi/ListAdapterFavourites.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.content.Intent\r\nimport android.support.v7.widget.RecyclerView\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport com.squareup.picasso.Picasso\r\nimport kotlinx.android.synthetic.main.activity_favorites_list.*\r\nimport kotlinx.android.synthetic.main.recycle_view.view.*\r\nimport kotlinx.android.synthetic.main.recyclerview_listafavs.*\r\nimport kotlinx.android.synthetic.main.recyclerview_listafavs.view.*\r\nimport org.joda.time.DateTime\r\nimport java.text.SimpleDateFormat\r\nimport java.util.*\r\nimport android.content.Intent.FLAG_ACTIVITY_NEW_TASK\r\nimport android.content.Intent.getIntentOld\r\nimport android.support.v4.content.ContextCompat.*\r\n\r\n\r\nclass ListAdapterFavourites(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {\r\n        return ListAdapter.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_listafavs, parent, false))\r\n    }\r\n\r\n    override fun getItemCount() = itemsList.size\r\n\r\n    override fun onBindViewHolder(holder: ListAdapter.ViewHolder, position: Int) {\r\n        val layout = holder.layoutView\r\n        val article = itemsList[position]\r\n\r\n        //val pattern = \"dd-MM-yyyy\"\r\n        //val formatter = SimpleDateFormat(pattern, Locale.getDefault())\r\n        //val formattedDate = formatter.format(DateTime.parse(article.publishedAt).toDate())\r\n\r\n        layout.nome2.text = article.title ?: \"N/A\"\r\n        layout.tipo2.text = article.release_date\r\n        layout.ranking2.text = article.vote_average\r\n        layout.elenco2.text = article.overview\r\n        (article.poster_path?.isEmpty()).let {\r\n            Picasso.get().load(article.poster_path).into(layout.urlToImage2)\r\n        }\r\n\r\n\r\n        layout.container2.btnListaFav.setOnClickListener {\r\n            MainApp.favouritesHelper.removeFavourite(article)\r\n            itemsList.remove(article)\r\n            notifyItemRemoved(position)\r\n\r\n\r\n        }\r\n    }\r\n\r\n\r\n    data class ViewHolder(val layoutView: View) : RecyclerView.ViewHolder(layoutView)\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/ListAdapterFavourites.kt b/app/src/main/java/com/example/retrofitmoshi/ListAdapterFavourites.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/ListAdapterFavourites.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/ListAdapterFavourites.kt	(date 1653535415161)
+@@ -1,24 +1,14 @@
+ package com.example.retrofitmoshi
+ 
+-import android.content.Intent
+-import android.support.v7.widget.RecyclerView
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+ import com.squareup.picasso.Picasso
+-import kotlinx.android.synthetic.main.activity_favorites_list.*
+-import kotlinx.android.synthetic.main.recycle_view.view.*
+-import kotlinx.android.synthetic.main.recyclerview_listafavs.*
+ import kotlinx.android.synthetic.main.recyclerview_listafavs.view.*
+-import org.joda.time.DateTime
+-import java.text.SimpleDateFormat
+-import java.util.*
+-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+-import android.content.Intent.getIntentOld
+-import android.support.v4.content.ContextCompat.*
++import androidx.recyclerview.widget.RecyclerView
+ 
+ 
+-class ListAdapterFavourites(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
++class ListAdapterFavourites(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
+         return ListAdapter.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_listafavs, parent, false))
+Index: app/src/main/java/com/example/retrofitmoshi/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/LoginActivity.kt b/app/src/main/java/com/example/retrofitmoshi/LoginActivity.kt
+new file mode 100644
+--- /dev/null	(date 1653580341775)
++++ b/app/src/main/java/com/example/retrofitmoshi/LoginActivity.kt	(date 1653580341775)
+@@ -0,0 +1,35 @@
++package com.example.retrofitmoshi
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import kotlinx.android.synthetic.main.activity_login.*
++import kotlinx.android.synthetic.main.register_login.*
++
++class LoginActivity : AppCompatActivity() {
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setContentView(R.layout.activity_login)
++
++        btLogin.setOnClickListener {
++            val email = txtEmailLogin.text.toString()
++            val password = txtPasswordLogin.text.toString()
++            val intent = Intent(this, MainActivity::class.java)
++            startActivity(intent)
++        }
++
++        btToRegister.setOnClickListener {
++            finish()
++        }
++
++    }
++
++
++
++
++
++
++
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/retrofitmoshi/MainApp.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.app.Application\r\n\r\nclass MainApp : Application() {\r\n\r\n    companion object {\r\n        lateinit var favouritesHelper: FavouritesHelper\r\n        val listArt = mutableListOf<Article>()\r\n    }\r\n\r\n    override fun onCreate() {\r\n        super.onCreate()\r\n        favouritesHelper = FavouritesHelper(applicationContext)\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/MainApp.kt b/app/src/main/java/com/example/retrofitmoshi/MainApp.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/MainApp.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/MainApp.kt	(date 1653535415141)
+@@ -6,7 +6,7 @@
+ 
+     companion object {
+         lateinit var favouritesHelper: FavouritesHelper
+-        val listArt = mutableListOf<Article>()
++        val listArt = mutableListOf<Movie>()
+     }
+ 
+     override fun onCreate() {
+Index: app/src/main/java/com/example/retrofitmoshi/Article.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/Article.kt b/app/src/main/java/com/example/retrofitmoshi/Movie.kt
+rename from app/src/main/java/com/example/retrofitmoshi/Article.kt
+rename to app/src/main/java/com/example/retrofitmoshi/Movie.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/Article.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/Movie.kt	(date 1653535415126)
+@@ -6,7 +6,7 @@
+ import java.util.*
+ 
+ @Parcelize
+-data class Article(
++data class Movie(
+     //filmes populares
+     var adult: Boolean,
+     var backdrop_path: String,
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/.idea/vcs.xml	(date 1653534702072)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/.idea/misc.xml	(date 1653535740407)
+@@ -1,5 +1,19 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="DesignSurface">
++    <option name="filePathToZoomLevelMap">
++      <map>
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/activity_favorites_list.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/activity_login.xml" value="0.1" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/activity_main.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/activity_second.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/fragment_pager.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/recycle_view.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/recyclerview_listafavs.xml" value="0.14791666666666667" />
++        <entry key="..\:/GitHub/psi_2022_movieManager/articlesproject/app/src/main/res/layout/register_login.xml" value="0.16614583333333333" />
++      </map>
++    </option>
++  </component>
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+Index: app/src/main/java/com/example/retrofitmoshi/Search.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\n    class Search(var page: Int, var results: List<Article>)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/Search.kt b/app/src/main/java/com/example/retrofitmoshi/Search.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/Search.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/Search.kt	(date 1653535415154)
+@@ -1,4 +1,4 @@
+ package com.example.retrofitmoshi
+ 
+-    class Search(var page: Int, var results: List<Article>)
++    class Search(var page: Int, var results: List<Movie>)
+ 
+Index: app/src/main/res/layout/recyclerview_listafavs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout\r\n        android:id=\"@+id/container2\"\r\n        xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:clipToPadding=\"false\">\r\n\r\n\r\n\r\n    <ImageView\r\n            android:id=\"@+id/btnListaFav\"\r\n            android:layout_width=\"45dp\"\r\n            android:layout_height=\"45dp\"\r\n            android:src=\"@drawable/ic_favpressed\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:layout_marginEnd=\"20dp\"\r\n            android:layout_marginTop=\"20dp\"\r\n    />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblNome\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        tools:text=\"Nome\"\r\n        android:text=\"Nome\"\r\n        android:textColor=\"#215E21\"\r\n        android:textSize=\"20sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/nome2\"\r\n        android:layout_marginTop=\"60dp\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/nome2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        tools:text=\"item\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblNome\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblTipo\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblTipo\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Tipo\"\r\n        tools:text=\"Tipo\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/nome2\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/tipo2\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tipo2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblTipo\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblRanking\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblRanking\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Ranking\"\r\n        tools:text=\"Ranking\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/tipo2\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/ranking2\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/ranking2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblRanking\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblElenco\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblElenco\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Elenco\"\r\n        tools:text=\"Elenco\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/ranking2\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/elenco2\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/elenco2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        android:textSize=\"17sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblElenco\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblUrlToImage\"\r\n    />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblUrlToImage\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"URLToImage\"\r\n        tools:text=\"URLToImage\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/elenco2\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/urlToImage2\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n    />\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/urlToImage2\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblUrlToImage\"\r\n        android:layout_marginTop=\"15dp\"\r\n        android:adjustViewBounds=\"true\"\r\n    />\r\n\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/recyclerview_listafavs.xml b/app/src/main/res/layout/recyclerview_listafavs.xml
+--- a/app/src/main/res/layout/recyclerview_listafavs.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/recyclerview_listafavs.xml	(date 1653535228174)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout
++<androidx.constraintlayout.widget.ConstraintLayout
+         android:id="@+id/container2"
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="match_parent"
+@@ -185,4 +185,4 @@
+     />
+ 
+ 
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/recycle_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout\r\n        android:id=\"@+id/container\"\r\n        xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:clipToPadding=\"false\">\r\n\r\n\r\n    <ImageView\r\n            android:id=\"@+id/btnFavP\"\r\n            android:layout_width=\"45dp\"\r\n            android:layout_height=\"45dp\"\r\n            android:src=\"@drawable/ic_favunpressed\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:layout_marginEnd=\"20dp\"\r\n            android:layout_marginTop=\"20dp\"\r\n    />\r\n    <TextView\r\n        android:id=\"@+id/lblTitle\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        tools:text=\"Title\"\r\n        android:text=\"Title\"\r\n        android:textColor=\"#215E21\"\r\n        android:textSize=\"20sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/title\"\r\n        android:layout_marginTop=\"60dp\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/title\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        tools:text=\"item\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblTitle\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblReleaseDate\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblReleaseDate\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Release Date\"\r\n        tools:text=\"Release Date\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/title\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/release_date\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/release_date\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblReleaseDate\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblVote\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblVote\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Rating\"\r\n        tools:text=\"Rating\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/release_date\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/vote_average\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/vote_average\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textSize=\"17sp\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblVote\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblOverview\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblOverview\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Overview\"\r\n        tools:text=\"Overview\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/vote_average\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/overview\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n        />\r\n\r\n    <TextView\r\n        android:id=\"@+id/overview\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"teste\"\r\n        android:textColor=\"#333333\"\r\n        tools:text=\"item\"\r\n        android:textSize=\"17sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblOverview\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/lblUrlToImage\"\r\n    />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lblUrlToImage\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"URLToImage\"\r\n        tools:text=\"URLToImage\"\r\n        android:textColor=\"#215E21\"\r\n        android:textStyle=\"bold\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/overview\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/urlToImage\"\r\n        android:shadowColor=\"#215E21\"\r\n        android:shadowDx=\"1\"\r\n        android:shadowDy=\"1\"\r\n        android:shadowRadius=\"1.7\"\r\n    />\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/urlToImage\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/lblUrlToImage\"\r\n        android:layout_marginTop=\"15dp\"\r\n        android:adjustViewBounds=\"true\"\r\n    />\r\n\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/recycle_view.xml b/app/src/main/res/layout/recycle_view.xml
+--- a/app/src/main/res/layout/recycle_view.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/recycle_view.xml	(date 1653535228185)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout
++<androidx.constraintlayout.widget.ConstraintLayout
+         android:id="@+id/container"
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="match_parent"
+@@ -183,4 +183,4 @@
+     />
+ 
+ 
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_pager.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n             xmlns:tools=\"http://schemas.android.com/tools\"\r\n                                             android:id=\"@+id/container\"\r\n             android:layout_width=\"match_parent\"\r\n             android:layout_height=\"match_parent\" xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n             tools:context=\".PagerFragment\">\r\n\r\n\r\n\r\n\r\n    <ProgressBar\r\n            android:id=\"@+id/homeprogress\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"/>\r\n\r\n    <ImageView\r\n            android:id=\"@+id/btnFavUnpressed\"\r\n            android:layout_width=\"40dp\"\r\n            android:layout_height=\"40dp\"\r\n            app:layout_constraintBottom_toTopOf=\"@id/textTitle\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            android:layout_marginBottom=\"10dp\"\r\n            android:src=\"@drawable/ic_favunpressed\"\r\n    />\r\n    <TextView\r\n            android:id=\"@+id/textTitle\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            tools:text=\"teste\"\r\n            android:textSize=\"20dp\"\r\n            android:textColor=\"#215E21\"\r\n            android:textAlignment=\"center\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintBottom_toTopOf=\"@id/imgView\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:layout_marginTop=\"100dp\"\r\n            android:layout_marginBottom=\"100dp\"\r\n    />\r\n\r\n    <ImageView\r\n            android:id=\"@+id/imgView\"\r\n            android:layout_width=\"250dp\"\r\n            android:layout_height=\"300dp\"\r\n            app:layout_constraintTop_toTopOf=\"@id/textTitle\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:layout_marginBottom=\"100dp\"\r\n            android:layout_marginTop=\"25dp\"\r\n    />\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_pager.xml b/app/src/main/res/layout/fragment_pager.xml
+--- a/app/src/main/res/layout/fragment_pager.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/fragment_pager.xml	(date 1653535228203)
+@@ -1,10 +1,11 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-             xmlns:tools="http://schemas.android.com/tools"
+-                                             android:id="@+id/container"
+-             android:layout_width="match_parent"
+-             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+-             tools:context=".PagerFragment">
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/container"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
++    tools:context=".PagerFragment">
+ 
+ 
+ 
+@@ -57,4 +58,4 @@
+             android:layout_marginTop="25dp"
+     />
+ 
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_second.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout\r\n        xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        tools:context=\".SecondActivity\"\r\n        android:background=\"@drawable/background_color\">\r\n\r\n    <android.support.v4.view.ViewPager\r\n            android:id=\"@+id/viewPager\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:layout_marginStart=\"60dp\"\r\n            android:layout_marginEnd=\"60dp\"\r\n            android:overScrollMode=\"never\"/>\r\n\r\n    <ImageView\r\n            android:id=\"@+id/backwardsArrow\"\r\n            android:layout_width=\"60dp\"\r\n            android:layout_height=\"60dp\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:src=\"@drawable/ic_backwards\"\r\n    />\r\n\r\n    <ImageView\r\n            android:id=\"@+id/forwardsArrow\"\r\n            android:layout_width=\"60dp\"\r\n            android:layout_height=\"60dp\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            android:src=\"@drawable/ic_forwards\"\r\n    />\r\n    <ImageView\r\n            android:id=\"@+id/exitSecond\"\r\n            android:layout_width=\"40dp\"\r\n            android:layout_height=\"60dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/forwardsArrow\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:layout_marginTop=\"90dp\"\r\n            android:layout_marginEnd=\"10dp\"\r\n            android:src=\"@drawable/ic_exit\"\r\n            app:layout_constraintVertical_bias=\"0.789\"/>\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_second.xml b/app/src/main/res/layout/activity_second.xml
+--- a/app/src/main/res/layout/activity_second.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/activity_second.xml	(date 1653535228217)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout
++<androidx.constraintlayout.widget.ConstraintLayout
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+@@ -8,7 +8,7 @@
+         tools:context=".SecondActivity"
+         android:background="@drawable/background_color">
+ 
+-    <android.support.v4.view.ViewPager
++    <androidx.viewpager.widget.ViewPager
+             android:id="@+id/viewPager"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+@@ -51,4 +51,4 @@
+             android:src="@drawable/ic_exit"
+             app:layout_constraintVertical_bias="0.789"/>
+ 
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_favorites_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<android.support.constraint.ConstraintLayout\r\n        xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        tools:context=\".FavoritesList\"\r\n        android:background=\"@drawable/background_color\">\r\n\r\n\r\n    <TextView\r\n            android:id=\"@+id/lblFavouriteArticles\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:text=\"Favourite Articles\"\r\n            tools:text=\"Favourite Articles\"\r\n            android:textColor=\"#215E21\"\r\n            android:textSize=\"30sp\"\r\n            android:textStyle=\"bold\"\r\n    />\r\n\r\n    <ImageView\r\n            android:id=\"@+id/btnGoBackMain\"\r\n            android:layout_width=\"50dp\"\r\n            android:layout_height=\"50dp\"\r\n            android:src=\"@drawable/ic_gobackmain\"\r\n            app:layout_constraintEnd_toStartOf=\"@id/lblFavouriteArticles\"\r\n            app:layout_constraintTop_toTopOf=\"@id/lblFavouriteArticles\"\r\n            android:layout_marginEnd=\"20dp\"\r\n    />\r\n\r\n    <android.support.v7.widget.RecyclerView\r\n            android:id=\"@+id/listFav\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/lblEdit\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:layout_marginTop=\"100dp\"\r\n            android:layout_marginStart=\"17dp\"\r\n            android:layout_marginEnd=\"2dp\"\r\n    />\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_favorites_list.xml b/app/src/main/res/layout/activity_favorites_list.xml
+--- a/app/src/main/res/layout/activity_favorites_list.xml	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/res/layout/activity_favorites_list.xml	(date 1653535228241)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<android.support.constraint.ConstraintLayout
++<androidx.constraintlayout.widget.ConstraintLayout
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+@@ -34,16 +34,15 @@
+             android:layout_marginEnd="20dp"
+     />
+ 
+-    <android.support.v7.widget.RecyclerView
++    <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/listFav"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/lblEdit"
+             app:layout_constraintBottom_toBottomOf="parent"
+             android:layout_marginTop="100dp"
+             android:layout_marginStart="17dp"
+             android:layout_marginEnd="2dp"
+     />
+-</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/retrofitmoshi/ViewPagerAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.support.v4.app.Fragment\r\nimport android.support.v4.app.FragmentManager\r\nimport android.support.v4.app.FragmentStatePagerAdapter\r\n\r\nclass ViewPagerAdapter (fragmentManager: FragmentManager, private val mList: ArrayList<Article>) :\r\n    FragmentStatePagerAdapter(fragmentManager) {\r\n    override fun getItem(position: Int): Fragment {\r\n        val article = mList[position]\r\n        return PagerFragment.newInstance(article.id,article.release_date, article.poster_path)\r\n}\r\n\r\n    override fun getCount() = mList.size\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/ViewPagerAdapter.kt b/app/src/main/java/com/example/retrofitmoshi/ViewPagerAdapter.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/ViewPagerAdapter.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/ViewPagerAdapter.kt	(date 1653535482790)
+@@ -1,10 +1,10 @@
+ package com.example.retrofitmoshi
+ 
+-import android.support.v4.app.Fragment
+-import android.support.v4.app.FragmentManager
+-import android.support.v4.app.FragmentStatePagerAdapter
++import androidx.fragment.app.Fragment
++import androidx.fragment.app.FragmentManager
++import androidx.fragment.app.FragmentStatePagerAdapter
+ 
+-class ViewPagerAdapter (fragmentManager: FragmentManager, private val mList: ArrayList<Article>) :
++class ViewPagerAdapter (fragmentManager: FragmentManager, private val mList: ArrayList<Movie>) :
+     FragmentStatePagerAdapter(fragmentManager) {
+     override fun getItem(position: Int): Fragment {
+         val article = mList[position]
+Index: app/src/main/java/com/example/retrofitmoshi/PagerFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.os.Bundle\r\nimport android.support.v4.app.Fragment\r\nimport android.support.v4.view.ViewPager\r\nimport android.view.Gravity\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport com.squareup.picasso.Callback\r\nimport com.squareup.picasso.Picasso\r\nimport kotlinx.android.synthetic.main.activity_second.*\r\n\r\nimport kotlinx.android.synthetic.main.fragment_pager.*\r\nimport kotlinx.android.synthetic.main.recycle_view.view.*\r\n\r\n\r\nclass PagerFragment : Fragment() {\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n\r\n        return inflater.inflate(R.layout.fragment_pager, container, false)\r\n    }\r\n\r\n    companion object {\r\n        const val ID_KEY = \"id\"\r\n        const val TITLE_KEY = \"title\"\r\n        const val URL_KEY = \"url\"\r\n\r\n        fun newInstance(id:String?, title: String?, url: String?): PagerFragment {\r\n            val fragment = PagerFragment()\r\n            val bundle = Bundle()\r\n            bundle.putString(ID_KEY, id)\r\n            bundle.putString(TITLE_KEY, title)\r\n            bundle.putString(URL_KEY, url)\r\n\r\n            fragment.arguments = bundle\r\n            return fragment\r\n        }\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        textTitle.text = arguments?.getString(TITLE_KEY)\r\n        (arguments?.getString(URL_KEY)?.isEmpty()).let {\r\n            Picasso.get().load(arguments?.getString(URL_KEY)).into(imgView, object : Callback {\r\n\r\n                override fun onSuccess() {}\r\n\r\n                override fun onError(e: Exception?) {\r\n                    if (textTitle != null && imgView != null && homeprogress != null) {\r\n                        textTitle.gravity = Gravity.CENTER\r\n                        imgView.visibility = ViewPager.GONE\r\n                        homeprogress.visibility = ViewPager.GONE\r\n                    }\r\n                }\r\n            })\r\n        }\r\n\r\n\r\n        val ur = arguments?.getString(URL_KEY)\r\n        if (ur == null) {\r\n            textTitle.gravity = Gravity.CENTER\r\n            imgView.visibility = ViewPager.GONE\r\n            homeprogress.visibility = ViewPager.GONE\r\n        }\r\n\r\n\r\n\r\n        val article = MainApp.listArt.first{it.id == arguments?.getString(ID_KEY)}\r\n\r\n        //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity\r\n        if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {\r\n            btnFavUnpressed.setImageResource(R.drawable.ic_favpressed)\r\n        }else{\r\n            btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)\r\n        }\r\n\r\n\r\n        btnFavUnpressed.setOnClickListener {\r\n            //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity\r\n            if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {\r\n                btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)\r\n                MainApp.favouritesHelper.removeFavourite(article)\r\n            }else{\r\n                btnFavUnpressed.setImageResource(R.drawable.ic_favpressed)\r\n                MainApp.favouritesHelper.addFavourite(article)\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/PagerFragment.kt b/app/src/main/java/com/example/retrofitmoshi/PagerFragment.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/PagerFragment.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/PagerFragment.kt	(date 1653535556391)
+@@ -1,16 +1,15 @@
+ package com.example.retrofitmoshi
+ 
+ import android.os.Bundle
+-import android.support.v4.app.Fragment
+-import android.support.v4.view.ViewPager
+ import android.view.Gravity
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
++import androidx.fragment.app.Fragment
++import androidx.viewpager.widget.ViewPager
+ import com.squareup.picasso.Callback
+ import com.squareup.picasso.Picasso
+ import kotlinx.android.synthetic.main.activity_second.*
+-
+ import kotlinx.android.synthetic.main.fragment_pager.*
+ import kotlinx.android.synthetic.main.recycle_view.view.*
+ 
+Index: app/src/main/java/com/example/retrofitmoshi/ListAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.content.Intent\r\nimport android.media.Image\r\nimport android.support.v7.widget.RecyclerView\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport com.squareup.picasso.Picasso\r\nimport kotlinx.android.synthetic.main.fragment_pager.*\r\nimport kotlinx.android.synthetic.main.recycle_view.*\r\nimport kotlinx.android.synthetic.main.recycle_view.view.*\r\nimport org.joda.time.DateTime\r\nimport java.text.SimpleDateFormat\r\nimport java.util.*\r\n\r\nclass ListAdapter(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\r\n        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false))\r\n    }\r\n\r\n\r\n    override fun getItemCount() = itemsList.size\r\n\r\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\r\n        val layout = holder.layoutView\r\n        val article = itemsList[position]\r\n\r\n        //val pattern = \"dd-MM-yyyy\"\r\n        //val formatter = SimpleDateFormat(pattern, Locale.getDefault())\r\n        //val formattedDate = formatter.format(DateTime.parse(article.publishedAt).toDate())\r\n\r\n        layout.title.text = article.title ?: \"N/A\"\r\n        layout.release_date.text = article.release_date\r\n        layout.vote_average.text = article.vote_average\r\n        layout.overview.text = article.overview\r\n        (article.poster_path?.isEmpty()).let {\r\n            Picasso.get().load(article.poster_path).into(layout.urlToImage)\r\n        }\r\n\r\n        if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article))  {\r\n            layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)\r\n        }\r\n        else{\r\n            layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)\r\n        }\r\n\r\n        layout.container.btnFavP.setOnClickListener {\r\n            //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity\r\n            if(MainApp.favouritesHelper.getFavouritesList()!!.contains(article)){\r\n                layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)\r\n                MainApp.favouritesHelper.removeFavourite(article)\r\n            }else{\r\n                layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)\r\n                MainApp.favouritesHelper.addFavourite(article)\r\n            }\r\n        }\r\n\r\n        layout.container.setOnClickListener {\r\n\r\n            val intent = Intent(layout.context, SecondActivity::class.java).apply {\r\n                putExtra(SecondActivity.keyPos, position)\r\n                putParcelableArrayListExtra(SecondActivity.keyList, ArrayList(itemsList))\r\n            }\r\n            layout.context.startActivity(intent)\r\n        }\r\n    }\r\n\r\n    data class ViewHolder(val layoutView: View) : RecyclerView.ViewHolder(layoutView)\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/ListAdapter.kt b/app/src/main/java/com/example/retrofitmoshi/ListAdapter.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/ListAdapter.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/ListAdapter.kt	(date 1653535444507)
+@@ -1,20 +1,15 @@
+ package com.example.retrofitmoshi
+ 
+ import android.content.Intent
+-import android.media.Image
+-import android.support.v7.widget.RecyclerView
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
++import androidx.recyclerview.widget.RecyclerView
+ import com.squareup.picasso.Picasso
+-import kotlinx.android.synthetic.main.fragment_pager.*
+-import kotlinx.android.synthetic.main.recycle_view.*
+ import kotlinx.android.synthetic.main.recycle_view.view.*
+-import org.joda.time.DateTime
+-import java.text.SimpleDateFormat
+ import java.util.*
+ 
+-class ListAdapter(private val itemsList: MutableList<Article>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
++class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false))
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+new file mode 100644
+--- /dev/null	(date 1653579852077)
++++ b/app/src/main/res/layout/activity_login.xml	(date 1653579852077)
+@@ -0,0 +1,57 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".RegisterActivity">
++
++
++    <EditText
++        android:id="@+id/txtEmailLogin"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:hint="Email"
++        android:minHeight="48dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintBottom_toBottomOf="parent" />
++
++    <EditText
++        android:id="@+id/txtPasswordLogin"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:hint="Password"
++        android:inputType="textPassword"
++        android:minHeight="48dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtEmailLogin" />
++
++    <Button
++        android:id="@+id/btLogin"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Login"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtPasswordLogin">
++    </Button>
++
++
++    <TextView
++        android:id="@+id/btToRegister"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Ainda nao tem conta? Clique Aqui!"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/btLogin"
++        android:layout_marginTop="20dp"/>
++
++
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/register_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/register_login.xml b/app/src/main/res/layout/register_login.xml
+new file mode 100644
+--- /dev/null	(date 1653577158175)
++++ b/app/src/main/res/layout/register_login.xml	(date 1653577158175)
+@@ -0,0 +1,74 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".LoginActivity"
++    android:background="@color/colorPrimaryDark">
++
++
++    <EditText
++        android:id="@+id/txtNome"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:hint="Nome"
++        android:minHeight="48dp"
++        android:background="@drawable/rounded_edittext_register_login"
++        android:textAlignment="center"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginTop="200dp"/>
++
++    <EditText
++        android:id="@+id/txtEmail"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:hint="Email"
++        android:minHeight="48dp"
++        android:layout_marginTop="10dp"
++        android:textAlignment="center"
++        android:background="@drawable/rounded_edittext_register_login"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtNome" />
++
++    <EditText
++        android:id="@+id/txtPassword"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:hint="Password"
++        android:inputType="textPassword"
++        android:minHeight="48dp"
++        android:layout_marginTop="10dp"
++        android:textAlignment="center"
++        android:background="@drawable/rounded_edittext_register_login"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
++
++    <Button
++        android:id="@+id/btRegister"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Registar"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtPassword">
++    </Button>
++
++
++    <TextView
++        android:id="@+id/btToLogin"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Já possui uma conta? Clique Aqui!"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/btRegister"/>
++
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/retrofitmoshi/SecondActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.retrofitmoshi\r\n\r\nimport android.support.v7.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.support.v4.view.ViewPager\r\nimport kotlinx.android.synthetic.main.activity_second.*\r\n\r\nclass SecondActivity : AppCompatActivity() {\r\n    companion object {\r\n        const val keyPos = \"pos\"\r\n        const val keyList = \"list\"\r\n    }\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_second)\r\n\r\n\r\n\r\n\r\n        val cont = intent.getStringArrayListExtra(keyList).count()\r\n\r\n        if(cont ==1){\r\n            forwardsArrow.visibility = ViewPager.INVISIBLE\r\n        }\r\n        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, intent.getParcelableArrayListExtra(keyList) ?: arrayListOf())\r\n        val pos = intent.getIntExtra(keyPos,0)\r\n        viewPager.currentItem = pos\r\n        if(pos==0) backwardsArrow.visibility = ViewPager.INVISIBLE\r\n        if(pos == viewPager.adapter?.count?.minus(1)) forwardsArrow.visibility = ViewPager.INVISIBLE\r\n        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {\r\n            override fun onPageScrollStateChanged(p0: Int) {}\r\n            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}\r\n            override fun onPageSelected(posi: Int) {\r\n\r\n                if(posi==0)\r\n                    backwardsArrow.visibility = ViewPager.INVISIBLE\r\n                else{\r\n                    backwardsArrow.visibility = ViewPager.VISIBLE\r\n                }\r\n                if(posi == viewPager.adapter?.count?.minus(1) ?: \"N/A\")\r\n                    forwardsArrow.visibility = ViewPager.INVISIBLE\r\n                else{\r\n                    forwardsArrow.visibility = ViewPager.VISIBLE\r\n                }\r\n            }\r\n        })\r\n\r\n\r\n        backwardsArrow.setOnClickListener{\r\n            viewPager.currentItem = viewPager.currentItem - 1\r\n        }\r\n\r\n        forwardsArrow.setOnClickListener{\r\n            viewPager.currentItem = viewPager.currentItem + 1\r\n        }\r\n\r\n        exitSecond.setOnClickListener{\r\n            onBackPressed()\r\n        }\r\n\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/SecondActivity.kt b/app/src/main/java/com/example/retrofitmoshi/SecondActivity.kt
+--- a/app/src/main/java/com/example/retrofitmoshi/SecondActivity.kt	(revision 724c01d07f4c5b09c97be8917b947d0a9e5e916a)
++++ b/app/src/main/java/com/example/retrofitmoshi/SecondActivity.kt	(date 1653535675073)
+@@ -1,8 +1,8 @@
+ package com.example.retrofitmoshi
+ 
+-import android.support.v7.app.AppCompatActivity
+ import android.os.Bundle
+-import android.support.v4.view.ViewPager
++import androidx.appcompat.app.AppCompatActivity
++import androidx.viewpager.widget.ViewPager
+ import kotlinx.android.synthetic.main.activity_second.*
+ 
+ class SecondActivity : AppCompatActivity() {
+@@ -17,7 +17,7 @@
+ 
+ 
+ 
+-        val cont = intent.getStringArrayListExtra(keyList).count()
++        val cont = intent.getStringArrayListExtra(keyList)?.count()
+ 
+         if(cont ==1){
+             forwardsArrow.visibility = ViewPager.INVISIBLE
+Index: app/src/main/java/com/example/retrofitmoshi/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/retrofitmoshi/RegisterActivity.kt b/app/src/main/java/com/example/retrofitmoshi/RegisterActivity.kt
+new file mode 100644
+--- /dev/null	(date 1653579697747)
++++ b/app/src/main/java/com/example/retrofitmoshi/RegisterActivity.kt	(date 1653579697747)
+@@ -0,0 +1,56 @@
++package com.example.retrofitmoshi
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import android.util.Log
++import android.widget.Toast
++import com.google.firebase.auth.FirebaseAuth
++import kotlinx.android.synthetic.main.activity_login.*
++import kotlinx.android.synthetic.main.register_login.*
++
++class RegisterActivity : AppCompatActivity() {
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setContentView(R.layout.register_login)
++
++
++        btRegister.setOnClickListener {
++            performRegister()
++            val email = txtEmail.text.toString()
++            val password = txtPassword.text.toString()
++        }
++
++        btToLogin.setOnClickListener {
++            val intent = Intent(this, LoginActivity::class.java)
++            startActivity(intent)
++        }
++    }
++
++        private fun performRegister(){
++            val email = txtEmail.text.toString()
++            val password = txtPassword.text.toString()
++
++
++            if(email.isEmpty() || password.isEmpty()){
++                Toast.makeText(this,"Por favor insira um email ou password",Toast.LENGTH_SHORT).show()
++            }
++
++            Log.d("LoginActivity","Email is" +email)
++            Log.d("LoginActivity","Password is" +password)
++            //Firebase Autenticacao para criar um utilizador com email e password
++            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
++                .addOnCompleteListener{
++                    if (!it.isSuccessful) return@addOnCompleteListener
++                    txtEmail.setText("")
++                    txtPassword.setText("")
++                    Log.w("Main", "Criado com sucesso ${it.result.user?.uid}")
++                    val intent = Intent(this, MainActivity::class.java)
++                    startActivity(intent)
++                }
++                .addOnFailureListener{
++                    Log.w("LoginActivity","Falhou a criacao do user${it.message}")
++                }
++        }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/rounded_edittext_register_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/rounded_edittext_register_login.xml b/app/src/main/res/drawable/rounded_edittext_register_login.xml
+new file mode 100644
+--- /dev/null	(date 1653534847957)
++++ b/app/src/main/res/drawable/rounded_edittext_register_login.xml	(date 1653534847957)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++
++    <corners android:radius="25dp"/>
++    <solid android:color="@android:color/white"/>
++
++</shape>
+\ No newline at end of file
