@@ -23,18 +23,22 @@ class FavouritesHelper(context: Context) {
         return null
     }
 
+<<<<<<< HEAD
     fun addFavourite(article: Movie) {
+=======
+    fun addFavourite(Movie: Movie) {
+>>>>>>> Login
         val favourites = getFavouritesList()
 
         if (favourites == null) {
-            val newList = mutableListOf(article)
+            val newList = mutableListOf(Movie)
 
             mSharedPreferences.edit()
                 .putString(FAVOURITES_KEY, jsonAdapter.toJson(newList))
                 .apply()
         } else {
             val tempList = favourites.toMutableList()
-            tempList.add(article)
+            tempList.add(Movie)
 
 
             mSharedPreferences.edit()
@@ -43,12 +47,16 @@ class FavouritesHelper(context: Context) {
         }
     }
 
+<<<<<<< HEAD
     fun removeFavourite(article: Movie) {
+=======
+    fun removeFavourite(Movie: Movie) {
+>>>>>>> Login
 
         val favourites = getFavouritesList()
         if (favourites != null) {
             val tempList = favourites.toMutableList()
-            tempList.remove(article)
+            tempList.remove(Movie)
             mSharedPreferences.edit()
                 .putString(FAVOURITES_KEY, jsonAdapter.toJson(tempList))
                 .apply()
@@ -56,11 +64,15 @@ class FavouritesHelper(context: Context) {
 
         }
     }
+<<<<<<< HEAD
     fun containsFavourite(article: Movie) {
+=======
+    fun containsFavourite(Movie: Movie) {
+>>>>>>> Login
         val favourites = getFavouritesList()
 
-        favourites?.contains(article).let {
-            addFavourite(article)
+        favourites?.contains(Movie).let {
+            addFavourite(Movie)
         }
 
     }

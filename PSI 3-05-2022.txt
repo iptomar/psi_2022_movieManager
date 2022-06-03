@@ -1,0 +1,11 @@
+O que foi feito:
+- Aplicação consome API
+- Alteração no User Interface
+- É possível colocar filmes nos favoritos e ir para a página dos favoritos 
+- É possivel pesquisar pelo nome do filme 
+O que falta fazer:
+- Há aquele bug de quando o filme é guardado nos favoritos e se reinicia a app, o filme fica lá mas não aparece com a estrelinha preenchida na pág inicial.
+- Talvez alterar o spinner em vez de ter autores, meter géneros de filmes
+- Fazer os logins 
+- URLToImage não carrega a imagem
+- consoante as alterações melhorar o UI

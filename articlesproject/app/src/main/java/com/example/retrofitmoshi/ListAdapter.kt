@@ -1,17 +1,12 @@
 package com.example.retrofitmoshi
 
 import android.content.Intent
-import android.media.Image
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_pager.*
-import kotlinx.android.synthetic.main.recycle_view.*
 import kotlinx.android.synthetic.main.recycle_view.view.*
-import org.joda.time.DateTime
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
@@ -35,7 +30,11 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
         layout.release_date.text = article.release_date
         layout.vote_average.text = article.vote_average
         layout.overview.text = article.overview
+<<<<<<< HEAD
         (article.poster_path.isEmpty()).let {
+=======
+        (article.poster_path?.isEmpty()).let {
+>>>>>>> Login
             val baseURLImage = "w500"
             article.poster_path = "https://image.tmdb.org/t/p/" +baseURLImage + article.poster_path
             Picasso.get().load(article.poster_path).into(layout.urlToImage)
@@ -44,7 +43,11 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
             Picasso.get().load(article.poster_path).into(layout.urlToImage)
             layout.urlToImage.visibility = View.VISIBLE
 
+<<<<<<< HEAD
         if(MainApp.favouritesHelper.getFavouritesList()?.contains(article) == true)  {
+=======
+        if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)==true)  {
+>>>>>>> Login
             layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
         }
         else{
@@ -53,7 +56,11 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
 
         layout.container.btnFavP.setOnClickListener {
             //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
+<<<<<<< HEAD
             if(MainApp.favouritesHelper.getFavouritesList()?.contains(article) == true){
+=======
+            if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)== true){
+>>>>>>> Login
                 layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
                 MainApp.favouritesHelper.removeFavourite(article)
             }else{
