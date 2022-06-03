@@ -22,16 +22,11 @@
         </activity>
         <activity
                 android:name=".MainActivity"
-<<<<<<< HEAD
-                android:launchMode="singleTop"
-            android:usesCleartextTraffic="true">
-=======
                 android:launchMode="singleTop">
         </activity>
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".MainActivity">
->>>>>>> Login
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

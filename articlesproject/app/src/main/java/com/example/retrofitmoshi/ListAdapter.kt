@@ -12,7 +12,9 @@ import java.util.*
 class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false)
+        )
     }
 
 
@@ -30,43 +32,17 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
         layout.release_date.text = article.release_date
         layout.vote_average.text = article.vote_average
         layout.overview.text = article.overview
-<<<<<<< HEAD
-        (article.poster_path.isEmpty()).let {
-=======
         (article.poster_path?.isEmpty()).let {
->>>>>>> Login
             val baseURLImage = "w500"
             article.poster_path = "https://image.tmdb.org/t/p/" +baseURLImage + article.poster_path
             Picasso.get().load(article.poster_path).into(layout.urlToImage)
         }
-        if(layout.urlToImage.visibility == View.GONE)
-            Picasso.get().load(article.poster_path).into(layout.urlToImage)
-            layout.urlToImage.visibility = View.VISIBLE
 
-<<<<<<< HEAD
-        if(MainApp.favouritesHelper.getFavouritesList()?.contains(article) == true)  {
-=======
         if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)==true)  {
->>>>>>> Login
             layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
         }
         else{
             layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
-        }
-
-        layout.container.btnFavP.setOnClickListener {
-            //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
-<<<<<<< HEAD
-            if(MainApp.favouritesHelper.getFavouritesList()?.contains(article) == true){
-=======
-            if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)== true){
->>>>>>> Login
-                layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
-                MainApp.favouritesHelper.removeFavourite(article)
-            }else{
-                layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
-                MainApp.favouritesHelper.addFavourite(article)
-            }
         }
 
         layout.container.setOnClickListener {

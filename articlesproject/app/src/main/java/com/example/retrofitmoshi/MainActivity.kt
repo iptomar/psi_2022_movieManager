@@ -9,12 +9,10 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recycle_view.*
-import kotlinx.android.synthetic.main.recycle_view.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,11 +87,8 @@ class MainActivity : AppCompatActivity() {
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {
             override fun onFailure(call: Call<Search>, t: Throwable) {
-<<<<<<< HEAD
                 Log.e("onFailure error", call.request().url().toString())
-=======
                 Log.e("onFailure error", t.message!!)
->>>>>>> Login
             }
 
             override fun onResponse(call: Call<Search>, response: Response<Search>) {
@@ -126,11 +121,6 @@ class MainActivity : AppCompatActivity() {
             divider.setDrawable(it)
         }
         list.addItemDecoration(divider)*/
-
-<<<<<<< HEAD
-=======
-
->>>>>>> Login
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
