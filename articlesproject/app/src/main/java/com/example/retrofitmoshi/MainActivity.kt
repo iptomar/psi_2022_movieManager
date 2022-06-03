@@ -12,7 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.recycle_view.*
+=======
+import kotlinx.android.synthetic.main.movie_item_view.*
+
+>>>>>>> POG_UI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,12 +41,8 @@ class MainActivity : AppCompatActivity() {
         //String array.
         val myStrings = arrayOf("Author", "Title", "Clear")
 
-        //Adapter for spinner
-        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, myStrings)
 
         btnSubmit.setOnClickListener {
-
-            if (spinner.selectedItem == myStrings[0]) {
                 val searchTxt = lblEdit.text.toString()
                 //teclado desaparece
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -54,35 +55,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
                 list.adapter?.notifyDataSetChanged()
-            }
-
-            if (spinner.selectedItem == myStrings[1]) {
-
-                val searchTxt = lblEdit.text.toString()
-                //teclado desaparece
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(lblEdit.windowToken, 0)
-
-                fList.clear()
-                fList.addAll(
-                    mList.filter {
-                        it.release_date?.toLowerCase()?.contains(searchTxt.toLowerCase()) == true
-                    }
-                )
-                list.adapter?.notifyDataSetChanged()
-            }
-
-            if (spinner.selectedItem == myStrings[2]) {
-                //teclado desaparece
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(lblEdit.windowToken, 0)
-
-                fList.clear()
-                fList.addAll(mList)
-                lblEdit.text.clear()
-                list.adapter?.notifyDataSetChanged()
-            }
         }
+
         val data = LocalDateTime.now().toString().substringBeforeLast("T")
         val call = API.create().getData()
         call.enqueue(object : Callback<Search> {

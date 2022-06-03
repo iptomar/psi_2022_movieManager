@@ -1,20 +1,33 @@
 package com.example.retrofitmoshi
 
 import android.content.Intent
+<<<<<<< HEAD
+=======
+import android.support.v7.widget.RecyclerView
+>>>>>>> POG_UI
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.recycle_view.view.*
+=======
+import kotlinx.android.synthetic.main.fragment_pager.*
+import kotlinx.android.synthetic.main.movie_item_view.view.*
+>>>>>>> POG_UI
 import java.util.*
 
 class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+<<<<<<< HEAD
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.recycle_view, parent, false)
         )
+=======
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_item_view, parent, false))
+>>>>>>> POG_UI
     }
 
 

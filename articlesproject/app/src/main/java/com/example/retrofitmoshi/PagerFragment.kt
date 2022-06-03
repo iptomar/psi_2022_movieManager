@@ -11,7 +11,10 @@ import androidx.viewpager.widget.ViewPager
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_pager.*
+<<<<<<< HEAD
 
+=======
+>>>>>>> POG_UI
 
 class PagerFragment : Fragment() {
 

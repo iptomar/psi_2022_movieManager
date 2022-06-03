@@ -4,6 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
+<<<<<<< HEAD
+=======
+import kotlinx.android.synthetic.main.activity_favorites_list.*
+import kotlinx.android.synthetic.main.recyclerview_listafavs.*
+>>>>>>> POG_UI
 import kotlinx.android.synthetic.main.recyclerview_listafavs.view.*
 import androidx.recyclerview.widget.RecyclerView
 

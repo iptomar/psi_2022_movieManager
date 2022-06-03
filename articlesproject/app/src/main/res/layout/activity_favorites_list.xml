@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".FavoritesList"
-        android:background="@drawable/background_color">
+        android:background="#4D4D4D">
 
 
     <TextView
@@ -17,22 +17,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
             android:text="Favourite Movies"
             tools:text="Favourite Movies"
-            android:textColor="#215E21"
-            android:textSize="30sp"
+            android:textColor="#FFC107"
+            android:textSize="37sp"
             android:textStyle="bold"
+            android:textAlignment="center"
     />
 
     <ImageView
-            android:id="@+id/btnGoBackMain"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_gobackmain"
-            app:layout_constraintEnd_toStartOf="@id/lblFavouriteMovies"
-            app:layout_constraintTop_toTopOf="@id/lblFavouriteMovies"
-            android:layout_marginEnd="20dp"
-    />
+        android:id="@+id/btnGoBackMain"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_gobackmain"
+        app:layout_constraintEnd_toStartOf="@id/lblFavouriteMovies"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lblFavouriteMovies" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listFav"
