@@ -12,12 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
-<<<<<<< HEAD
-import kotlinx.android.synthetic.main.recycle_view.*
-=======
 import kotlinx.android.synthetic.main.movie_item_view.*
-
->>>>>>> POG_UI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
