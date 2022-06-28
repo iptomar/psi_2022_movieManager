@@ -27,7 +27,15 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
         //val formattedDate = formatter.format(DateTime.parse(article.publishedAt).toDate())
 
         layout.title.text = article.title ?: "N/A"
-        layout.release_date.text = article.release_date
+        if (layout.title.text == "N/A") {
+            layout.title.text = article.name ?: "N/A"
+        }
+
+        layout.release_date.text = article.release_date ?: "N/A"
+        if (layout.release_date.text == "N/A") {
+            layout.release_date.text = article.first_air_date ?: "N/A"
+        }
+
         layout.vote_average.text = article.vote_average
         layout.overview.text = article.overview
         (article.poster_path?.isEmpty()).let {

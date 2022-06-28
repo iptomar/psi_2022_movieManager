@@ -26,6 +26,7 @@ class PagerFragment : Fragment() {
         const val ID_KEY = "id"
         const val TITLE_KEY = "title"
         const val URL_KEY = "url"
+        const val NAME_KEY = "name"
 
         fun newInstance(id:String?, title: String?, url: String?): PagerFragment {
             val fragment = PagerFragment()
@@ -64,7 +65,6 @@ class PagerFragment : Fragment() {
             imgView.visibility = ViewPager.GONE
             homeprogress.visibility = ViewPager.GONE
         }
-
 
 
         val article = MainApp.listArt.first{it.id == arguments?.getString(ID_KEY)}

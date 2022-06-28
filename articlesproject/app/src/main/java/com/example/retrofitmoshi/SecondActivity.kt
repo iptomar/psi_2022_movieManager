@@ -14,9 +14,6 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-
-
-
         val cont = intent.getStringArrayListExtra(keyList)?.count()
 
         if(cont ==1){
