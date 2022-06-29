@@ -10,10 +10,17 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.viewpager.widget.ViewPager
+import com.example.retrofitmoshi.MainApp.Companion.favouritesHelper
+import com.example.retrofitmoshi.MainApp.Companion.listArt
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_pager.*
 import kotlinx.android.synthetic.main.movie_item_view.*
+import kotlinx.android.synthetic.main.movie_item_view.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,8 +59,9 @@ class MainActivity : AppCompatActivity() {
                         it.title?.toLowerCase()?.contains(searchTxt.toLowerCase()) == true
                     }
                 )
-                list.adapter?.notifyDataSetChanged()
         }
+
+
 
         btn_movies.setOnClickListener(){
             callMovies()
@@ -67,15 +75,25 @@ class MainActivity : AppCompatActivity() {
             btn_movies.setBackgroundColor(Color.parseColor("#4D4D4D4D"))
         }
 
+        btnLogOut.setOnClickListener(){
+            Firebase.auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        /*ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
+        ContextCompat.getDrawable(this, R.drawable.recycleview_divider)?.let {
             divider.setDrawable(it)
         }
-        list.addItemDecoration(divider)*/
+        list.addItemDecoration(divider)
         btnFavsList.setOnClickListener {
             val intent = Intent(this, FavoritesList::class.java)
             startActivityForResult(intent, lCode)
         }
+    }
+
+    companion object {
+        const val ID_KEY = "id"
     }
 
 
@@ -94,9 +112,9 @@ class MainActivity : AppCompatActivity() {
                     homeprogress1.visibility = ViewPager.GONE
 
 
-                    it.results.forEach { art ->
+                    /*it.results.forEach { art ->
                         art.id = UUID.randomUUID().toString()
-                    }
+                    }*/
 
                     mList.clear()
                     mList.addAll(it.results)
@@ -106,6 +124,15 @@ class MainActivity : AppCompatActivity() {
 
                     MainApp.listArt.clear()
                     MainApp.listArt.addAll(it.results)
+
+                    //val article = MainApp.listArt.get(art.id)
+
+                    //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
+                    /*if(MainApp.favouritesHelper.getFavouritesList().forEachIndexed(it.results.get()) == true)  {
+                        btnFavUnpressed.setImageResource(R.drawable.ic_favpressed)
+                    }else{
+                        btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)
+                    }*/
 
                     list.adapter?.notifyDataSetChanged()
                 }
@@ -128,9 +155,9 @@ class MainActivity : AppCompatActivity() {
                     homeprogress1.visibility = ViewPager.GONE
 
 
-                    it.results.forEach { art ->
+                    /*it.results.forEach { art ->
                         art.id = UUID.randomUUID().toString()
-                    }
+                    }*/
 
                     mList.clear()
                     mList.addAll(it.results)

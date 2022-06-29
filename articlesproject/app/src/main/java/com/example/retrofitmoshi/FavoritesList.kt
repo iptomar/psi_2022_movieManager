@@ -20,13 +20,15 @@ class FavoritesList : AppCompatActivity() {
         listFav.adapter = ListAdapterFavourites(mList)
 
 
-        listFav.adapter?.notifyDataSetChanged()
+        //listFav.adapter?.notifyDataSetChanged()
 
         listFav.layoutManager = GridLayoutManager(this, 2)
 
         btnGoBackMain?.setOnClickListener {
             setResult(Activity.RESULT_OK, Intent())
-            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            //finish()
         }
     }
 }

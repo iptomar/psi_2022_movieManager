@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitmoshi.MainApp.Companion.favouritesHelper
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.movie_item_view.view.*
 import java.util.*
 
@@ -28,27 +31,52 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
 
         layout.title.text = article.title ?: "N/A"
         if (layout.title.text == "N/A") {
+            article.title = article.name!!
             layout.title.text = article.name ?: "N/A"
         }
 
         layout.release_date.text = article.release_date ?: "N/A"
         if (layout.release_date.text == "N/A") {
+            article.release_date = article.first_air_date!!
             layout.release_date.text = article.first_air_date ?: "N/A"
         }
 
         layout.vote_average.text = article.vote_average
         layout.overview.text = article.overview
-        (article.poster_path?.isEmpty()).let {
+        (layout.urlToImage == null).let {
             val baseURLImage = "w500"
+            layout.urlToImage.visibility = View.VISIBLE
             article.poster_path = "https://image.tmdb.org/t/p/" +baseURLImage + article.poster_path
             Picasso.get().load(article.poster_path).into(layout.urlToImage)
         }
 
-        if(MainApp.favouritesHelper.getFavouritesList()?.contains(article)==true)  {
-            layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
+        favouritesHelper.getFavouritesList()?.forEach { art ->
+            if(art == article)  {
+                        layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
+            }
+            /*else{
+                layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
+            }*/
         }
-        else{
-            layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
+
+
+        layout.container.btnFavP.setOnClickListener {
+
+                //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
+                //if(favouritesHelper.getFavouritesList()?.contains(article) == true){*/
+                if (favouritesHelper.getFavouritesList()!!.contains(article)) {
+                    layout.container.btnFavP.setImageResource(R.drawable.ic_favunpressed)
+                    favouritesHelper.removeFavourite(article)
+                } else {
+                    layout.container.btnFavP.setImageResource(R.drawable.ic_favpressed)
+                    favouritesHelper.addFavourite(article)
+                }
+            //if(favouritesHelper.getFavouritesList()!!.isEmpty()){
+                //layout.container.btnFavP.setBackgroundResource(R.drawable.ic_favpressed)
+                //favouritesHelper.addFavourite(article)
+
+
+
         }
 
         layout.container.setOnClickListener {
@@ -60,6 +88,7 @@ class ListAdapter(private val itemsList: MutableList<Movie>) : RecyclerView.Adap
             layout.context.startActivity(intent)
         }
     }
+
 
     data class ViewHolder(val layoutView: View) : RecyclerView.ViewHolder(layoutView)
 }
