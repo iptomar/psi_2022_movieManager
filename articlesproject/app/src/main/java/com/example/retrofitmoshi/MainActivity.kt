@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                         it.title?.toLowerCase()?.contains(searchTxt.toLowerCase()) == true
                     }
                 )
+            list.adapter?.notifyDataSetChanged()
         }
 
 
@@ -124,15 +125,6 @@ class MainActivity : AppCompatActivity() {
 
                     MainApp.listArt.clear()
                     MainApp.listArt.addAll(it.results)
-
-                    //val article = MainApp.listArt.get(art.id)
-
-                    //Insere a estrela premida ou nao consoante as estrelas da recyclerView do MainActivity
-                    /*if(MainApp.favouritesHelper.getFavouritesList().forEachIndexed(it.results.get()) == true)  {
-                        btnFavUnpressed.setImageResource(R.drawable.ic_favpressed)
-                    }else{
-                        btnFavUnpressed.setImageResource(R.drawable.ic_favunpressed)
-                    }*/
 
                     list.adapter?.notifyDataSetChanged()
                 }

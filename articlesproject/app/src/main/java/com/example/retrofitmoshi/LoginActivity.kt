@@ -43,7 +43,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btToRegister.setOnClickListener {
-            finish()
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
       private fun verifyIfIsLogged(){
